@@ -1,4 +1,4 @@
-# Duarte Consultor Imobiliário
+# RealStateHouseFinder
 
 Portal imobiliário completo desenvolvido com Vue.js 3 e Appwrite BaaS.
 
@@ -192,7 +192,7 @@ As cores principais podem ser alteradas no arquivo `src/App.vue`:
 
 ### Logo
 
-Substitua o texto "Duarte Consultor Imobiliário" no header por uma imagem/logo se desejar.
+Substitua o texto no header por uma imagem/logo se desejar.
 
 ## 📝 Licença
 
@@ -200,7 +200,7 @@ Este projeto está sob a licença MIT.
 
 ## 👤 Autor
 
-Duarte Consultor Imobiliário
+Real State House Finder
 
 ## 🤝 Contribuindo
 
