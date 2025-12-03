@@ -27,6 +27,9 @@ const handleSubmit = async () => {
 <template>
   <div class="login-container">
     <div class="login-card">
+      <button @click="$router.push('/')" class="btn btn-secondary btn-voltar">
+        ← Voltar
+      </button>
       <h1 class="login-title">Login Administrativo</h1>
       <p class="login-subtitle">Acesse o painel de cadastro de imóveis</p>
 
@@ -83,6 +86,12 @@ const handleSubmit = async () => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+}
+
+.btn-voltar {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 .login-title {

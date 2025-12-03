@@ -90,6 +90,11 @@ onMounted(() => {
 
 <template>
   <div class="detalhe-container">
+    <!-- Back Button -->
+    <button @click="$router.push('/busca')" class="btn btn-secondary btn-voltar">
+      ← Voltar para busca
+    </button>
+
     <!-- Loading -->
     <div v-if="isLoading" class="loading">
       <div class="spinner"></div>
@@ -275,6 +280,12 @@ onMounted(() => {
 <style scoped>
 .detalhe-container {
   padding: 1rem 0;
+}
+
+.btn-voltar {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 .loading {

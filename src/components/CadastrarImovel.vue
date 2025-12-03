@@ -128,6 +128,9 @@ const handleSubmit = async () => {
 <template>
   <div class="cadastro-container">
     <div class="cadastro-card">
+      <button @click="$router.push('/')" class="btn btn-secondary btn-voltar">
+        ← Voltar
+      </button>
       <h1 class="cadastro-title">Cadastrar Imóvel</h1>
 
       <div v-if="success" class="success-message">
@@ -381,6 +384,12 @@ const handleSubmit = async () => {
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #2c3e50;
+}
+
+.btn-voltar {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 .cadastro-form {
