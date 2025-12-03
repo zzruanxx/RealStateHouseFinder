@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { databases, storage, DB_ID, COLLECTION_IMOVEIS_ID, Query } from '../appwrite';
+import { databases, storage, DB_ID, COLLECTION_IMOVEIS_ID, BUCKET_FOTOS_ID, Query } from '../appwrite';
 
 const route = useRoute();
 const router = useRouter();
@@ -116,6 +116,10 @@ const formatarPreco = (preco) => {
   }).format(preco);
 };
 
+const voltarParaHome = () => {
+  router.push('/');
+};
+
 onMounted(() => {
   buscarImoveis();
 });
@@ -123,7 +127,12 @@ onMounted(() => {
 
 <template>
   <div class="busca-container">
-    <h1 class="busca-title">Buscar Imóveis</h1>
+    <div class="page-header">
+      <button @click="voltarParaHome" class="btn btn-secondary btn-voltar">
+        ← Voltar
+      </button>
+      <h1 class="busca-title">Buscar Imóveis</h1>
+    </div>
 
     <!-- Formulário de Filtros -->
     <div class="filtros-card">
@@ -274,9 +283,21 @@ onMounted(() => {
   padding: 1rem 0;
 }
 
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-voltar {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
 .busca-title {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   color: #2c3e50;
 }
 

@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { databases, storage, DB_ID, COLLECTION_IMOVEIS_ID, BUCKET_FOTOS_ID } from '../appwrite';
 
 const route = useRoute();
+const router = useRouter();
 
 const isLoading = ref(true);
 const imovel = ref(null);
@@ -83,6 +84,10 @@ const enviarContato = () => {
   }, 3000);
 };
 
+const voltarParaBusca = () => {
+  router.push('/busca');
+};
+
 onMounted(() => {
   carregarImovel();
 });
@@ -90,6 +95,11 @@ onMounted(() => {
 
 <template>
   <div class="detalhe-container">
+    <!-- Back Button -->
+    <button @click="voltarParaBusca" class="btn btn-secondary btn-voltar">
+      ← Voltar para busca
+    </button>
+
     <!-- Loading -->
     <div v-if="isLoading" class="loading">
       <div class="spinner"></div>
@@ -275,6 +285,12 @@ onMounted(() => {
 <style scoped>
 .detalhe-container {
   padding: 1rem 0;
+}
+
+.btn-voltar {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 .loading {

@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { databases, storage, account, DB_ID, COLLECTION_IMOVEIS_ID, BUCKET_FOTOS_ID, ID, Permission, Role } from '../appwrite';
 
+const router = useRouter();
 const isLoading = ref(false);
 const success = ref('');
 const error = ref('');
@@ -123,11 +125,18 @@ const handleSubmit = async () => {
     isLoading.value = false;
   }
 };
+
+const voltarParaHome = () => {
+  router.push('/');
+};
 </script>
 
 <template>
   <div class="cadastro-container">
     <div class="cadastro-card">
+      <button @click="voltarParaHome" class="btn btn-secondary btn-voltar">
+        ← Voltar
+      </button>
       <h1 class="cadastro-title">Cadastrar Imóvel</h1>
 
       <div v-if="success" class="success-message">
@@ -381,6 +390,12 @@ const handleSubmit = async () => {
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #2c3e50;
+}
+
+.btn-voltar {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 .cadastro-form {
