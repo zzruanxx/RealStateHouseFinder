@@ -22,12 +22,16 @@ const handleSubmit = async () => {
     isLoading.value = false;
   }
 };
+
+const voltarParaHome = () => {
+  router.push('/');
+};
 </script>
 
 <template>
   <div class="login-container">
     <div class="login-card">
-      <button @click="$router.push('/')" class="btn btn-secondary btn-voltar">
+      <button @click="voltarParaHome" class="btn btn-secondary btn-voltar">
         ← Voltar
       </button>
       <h1 class="login-title">Login Administrativo</h1>

@@ -116,6 +116,10 @@ const formatarPreco = (preco) => {
   }).format(preco);
 };
 
+const voltarParaHome = () => {
+  router.push('/');
+};
+
 onMounted(() => {
   buscarImoveis();
 });
@@ -124,7 +128,7 @@ onMounted(() => {
 <template>
   <div class="busca-container">
     <div class="page-header">
-      <button @click="$router.push('/')" class="btn btn-secondary btn-voltar">
+      <button @click="voltarParaHome" class="btn btn-secondary btn-voltar">
         ← Voltar
       </button>
       <h1 class="busca-title">Buscar Imóveis</h1>
