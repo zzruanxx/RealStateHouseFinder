@@ -9,6 +9,7 @@ import AdminLogin from '../components/AdminLogin.vue';
 import AdminDashboard from '../components/AdminDashboard.vue';
 import CadastrarImovel from '../components/CadastrarImovel.vue';
 import EditarImovel from '../components/EditarImovel.vue';
+import NotFound from '../components/NotFound.vue';
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     name: 'EditarImovel',
     component: EditarImovel,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound
   }
 ];
 
