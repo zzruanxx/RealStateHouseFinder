@@ -114,7 +114,8 @@ onMounted(() => {
           <img
             v-if="fotoAtiva"
             :src="fotoAtiva"
-            :alt="imovel.titulo"
+            :alt="`Foto principal - ${imovel.titulo}`"
+            loading="lazy"
             class="foto-principal-img"
           />
           <div v-else class="foto-placeholder">
@@ -130,7 +131,7 @@ onMounted(() => {
             class="miniatura"
             :class="{ active: url === fotoAtiva }"
           >
-            <img :src="url" :alt="`Foto ${index + 1}`" />
+            <img :src="url" :alt="`Foto ${index + 1} - ${imovel.titulo}`" loading="lazy" />
           </div>
         </div>
       </div>
@@ -144,6 +145,10 @@ onMounted(() => {
 
         <p class="imovel-localizacao">
           📍 {{ imovel.bairro }}, {{ imovel.cidade }}
+        </p>
+        
+        <p v-if="imovel.endereco" class="imovel-endereco">
+          🏠 {{ imovel.endereco }}
         </p>
 
         <div class="preco-section">
@@ -419,6 +424,12 @@ onMounted(() => {
 .imovel-localizacao {
   font-size: 1.1rem;
   color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.imovel-endereco {
+  font-size: 1rem;
+  color: #555;
   margin-bottom: 2rem;
 }
 

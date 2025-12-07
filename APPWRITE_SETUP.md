@@ -40,6 +40,7 @@ Clique em "Attributes" e adicione os seguintes atributos:
 | tipo_imovel | 50 | ✓ | - | ✗ |
 | cidade | 100 | ✓ | - | ✗ |
 | bairro | 100 | ✓ | - | ✗ |
+| endereco | 255 | ✗ | - | ✗ |
 | fotos_storage_ids | 255 | ✓ | - | ✓ |
 | id_corretor | 255 | ✓ | - | ✗ |
 

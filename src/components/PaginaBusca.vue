@@ -324,7 +324,8 @@ onMounted(() => {
               <img
                 v-if="imovel.fotoUrl"
                 :src="imovel.fotoUrl"
-                :alt="imovel.titulo"
+                :alt="`${imovel.titulo} - ${imovel.cidade}`"
+                loading="lazy"
                 class="foto-img"
               />
               <div v-else class="foto-placeholder">
