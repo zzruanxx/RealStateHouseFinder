@@ -41,6 +41,7 @@ onMounted(() => {
           <router-link to="/" class="nav-link">Home</router-link>
           <router-link to="/busca" class="nav-link">Buscar Imóveis</router-link>
           <template v-if="isLoggedIn">
+            <router-link to="/admin/dashboard" class="nav-link">Painel Admin</router-link>
             <router-link to="/admin/cadastrar" class="nav-link">Cadastrar Imóvel</router-link>
             <button @click="logout" class="nav-link btn-logout">Sair</button>
           </template>

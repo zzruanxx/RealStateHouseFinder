@@ -15,7 +15,7 @@ const handleSubmit = async () => {
 
   try {
     await account.createEmailPasswordSession(email.value, password.value);
-    router.push('/admin/cadastrar');
+    router.push('/admin/dashboard');
   } catch (err) {
     error.value = err.message || 'Erro ao fazer login. Verifique suas credenciais.';
   } finally {
