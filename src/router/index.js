@@ -6,7 +6,9 @@ import PaginaInicial from '../components/PaginaInicial.vue';
 import PaginaBusca from '../components/PaginaBusca.vue';
 import DetalheImovel from '../components/DetalheImovel.vue';
 import AdminLogin from '../components/AdminLogin.vue';
+import AdminDashboard from '../components/AdminDashboard.vue';
 import CadastrarImovel from '../components/CadastrarImovel.vue';
+import EditarImovel from '../components/EditarImovel.vue';
 
 const routes = [
   {
@@ -30,9 +32,21 @@ const routes = [
     component: AdminLogin
   },
   {
+    path: '/admin/dashboard',
+    name: 'AdminDashboard',
+    component: AdminDashboard,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/admin/cadastrar',
     name: 'CadastrarImovel',
     component: CadastrarImovel,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/admin/editar/:id',
+    name: 'EditarImovel',
+    component: EditarImovel,
     meta: { requiresAuth: true }
   }
 ];

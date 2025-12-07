@@ -11,12 +11,17 @@ const imoveis = ref([]);
 
 // Filtros
 const filtros = ref({
+  texto_busca: route.query.texto_busca || '',
   tipo_anuncio: route.query.tipo_anuncio || '',
   tipo_imovel: route.query.tipo_imovel || '',
   cidade: route.query.cidade || '',
   quartos_min: route.query.quartos_min || '',
+  banheiros_min: route.query.banheiros_min || '',
+  preco_min: route.query.preco_min || '',
   preco_max: route.query.preco_max || ''
 });
+
+const ordenacao = ref(route.query.ordenacao || 'recentes');
 
 const buscarImoveis = async () => {
   isLoading.value = true;
@@ -40,16 +45,37 @@ const buscarImoveis = async () => {
       queries.push(Query.greaterThanEqual('quartos', parseInt(filtros.value.quartos_min)));
     }
 
+    if (filtros.value.banheiros_min) {
+      queries.push(Query.greaterThanEqual('banheiros', parseInt(filtros.value.banheiros_min)));
+    }
+
+    if (filtros.value.preco_min) {
+      const precoMin = parseFloat(filtros.value.preco_min);
+      if (filtros.value.tipo_anuncio === 'aluguel') {
+        queries.push(Query.greaterThanEqual('preco_aluguel', precoMin));
+      } else if (!filtros.value.tipo_anuncio || filtros.value.tipo_anuncio === 'venda') {
+        queries.push(Query.greaterThanEqual('preco_venda', precoMin));
+      }
+    }
+
     if (filtros.value.preco_max) {
       const precoMax = parseFloat(filtros.value.preco_max);
       if (filtros.value.tipo_anuncio === 'aluguel') {
         queries.push(Query.lessThanEqual('preco_aluguel', precoMax));
-      } else {
+      } else if (!filtros.value.tipo_anuncio || filtros.value.tipo_anuncio === 'venda') {
         queries.push(Query.lessThanEqual('preco_venda', precoMax));
       }
     }
 
-    queries.push(Query.orderDesc('$createdAt'));
+    // Aplicar ordenação
+    if (ordenacao.value === 'preco_asc') {
+      queries.push(Query.orderAsc(filtros.value.tipo_anuncio === 'aluguel' ? 'preco_aluguel' : 'preco_venda'));
+    } else if (ordenacao.value === 'preco_desc') {
+      queries.push(Query.orderDesc(filtros.value.tipo_anuncio === 'aluguel' ? 'preco_aluguel' : 'preco_venda'));
+    } else {
+      queries.push(Query.orderDesc('$createdAt'));
+    }
+
     queries.push(Query.limit(50));
 
     // Buscar documentos
@@ -60,7 +86,7 @@ const buscarImoveis = async () => {
     );
 
     // Processar resultados e gerar URLs das fotos
-    imoveis.value = response.documents.map(imovel => {
+    let resultados = response.documents.map(imovel => {
       const fotoUrl = imovel.fotos_storage_ids && imovel.fotos_storage_ids.length > 0
         ? storage.getFilePreview(
             BUCKET_FOTOS_ID,
@@ -78,6 +104,19 @@ const buscarImoveis = async () => {
       };
     });
 
+    // Filtro de texto (busca no cliente por limitação do Appwrite)
+    if (filtros.value.texto_busca) {
+      const termo = filtros.value.texto_busca.toLowerCase();
+      resultados = resultados.filter(imovel => 
+        imovel.titulo.toLowerCase().includes(termo) ||
+        (imovel.descricao && imovel.descricao.toLowerCase().includes(termo)) ||
+        imovel.cidade.toLowerCase().includes(termo) ||
+        imovel.bairro.toLowerCase().includes(termo)
+      );
+    }
+
+    imoveis.value = resultados;
+
   } catch (error) {
     console.error('Erro ao buscar imóveis:', error);
   } finally {
@@ -90,7 +129,8 @@ const aplicarFiltros = () => {
   router.push({
     path: '/busca',
     query: {
-      ...filtros.value
+      ...filtros.value,
+      ordenacao: ordenacao.value
     }
   });
   buscarImoveis();
@@ -98,13 +138,17 @@ const aplicarFiltros = () => {
 
 const limparFiltros = () => {
   filtros.value = {
+    texto_busca: '',
     tipo_anuncio: '',
     tipo_imovel: '',
     cidade: '',
     quartos_min: '',
+    banheiros_min: '',
+    preco_min: '',
     preco_max: ''
   };
-  router.push('/busca');
+  ordenacao.value = 'recentes';
+  router.push({ path: '/busca' });
   buscarImoveis();
 };
 
@@ -136,8 +180,20 @@ onMounted(() => {
 
     <!-- Formulário de Filtros -->
     <div class="filtros-card">
-      <h2 class="filtros-title">Filtros</h2>
+      <h2 class="filtros-title">Filtros de Busca</h2>
       <form @submit.prevent="aplicarFiltros" class="filtros-form">
+        <!-- Busca por texto -->
+        <div class="form-group full-width">
+          <label for="texto_busca">Buscar por palavra-chave</label>
+          <input
+            type="text"
+            id="texto_busca"
+            v-model="filtros.texto_busca"
+            placeholder="Digite título, descrição, cidade ou bairro..."
+            class="form-input"
+          />
+        </div>
+
         <div class="filtros-row">
           <div class="form-group">
             <label for="tipo_anuncio">Tipo de Negócio</label>
@@ -184,6 +240,30 @@ onMounted(() => {
           </div>
 
           <div class="form-group">
+            <label for="banheiros_min">Banheiros (mínimo)</label>
+            <input
+              type="number"
+              id="banheiros_min"
+              v-model="filtros.banheiros_min"
+              placeholder="1"
+              min="0"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="preco_min">Preço mínimo (R$)</label>
+            <input
+              type="number"
+              id="preco_min"
+              v-model="filtros.preco_min"
+              placeholder="100000"
+              step="1000"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
             <label for="preco_max">Preço máximo (R$)</label>
             <input
               type="number"
@@ -194,12 +274,21 @@ onMounted(() => {
               class="form-input"
             />
           </div>
+
+          <div class="form-group">
+            <label for="ordenacao">Ordenar por</label>
+            <select id="ordenacao" v-model="ordenacao" class="form-select">
+              <option value="recentes">Mais recentes</option>
+              <option value="preco_asc">Menor preço</option>
+              <option value="preco_desc">Maior preço</option>
+            </select>
+          </div>
         </div>
 
         <div class="filtros-actions">
-          <button type="submit" class="btn btn-primary">Buscar</button>
+          <button type="submit" class="btn btn-primary">🔍 Buscar</button>
           <button type="button" @click="limparFiltros" class="btn btn-secondary">
-            Limpar Filtros
+            🗑️ Limpar Filtros
           </button>
         </div>
       </form>
@@ -331,6 +420,10 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
 }
 
 .form-group label {

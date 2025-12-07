@@ -21,6 +21,7 @@ const form = ref({
   valor_iptu: '',
   cidade: '',
   bairro: '',
+  endereco: '',
   area_util_m2: '',
   quartos: '',
   banheiros: '',
@@ -72,6 +73,7 @@ const handleSubmit = async () => {
       valor_iptu: form.value.valor_iptu ? parseFloat(form.value.valor_iptu) : null,
       cidade: form.value.cidade,
       bairro: form.value.bairro,
+      endereco: form.value.endereco || '',
       area_util_m2: form.value.area_util_m2 ? parseInt(form.value.area_util_m2) : null,
       quartos: parseInt(form.value.quartos),
       banheiros: parseInt(form.value.banheiros),
@@ -111,6 +113,7 @@ const handleSubmit = async () => {
       valor_iptu: '',
       cidade: '',
       bairro: '',
+      endereco: '',
       area_util_m2: '',
       quartos: '',
       banheiros: '',
@@ -119,6 +122,11 @@ const handleSubmit = async () => {
     fotos.value = null;
     document.getElementById('fotos').value = '';
 
+    // Redirecionar para dashboard após 2 segundos
+    setTimeout(() => {
+      router.push('/admin/dashboard');
+    }, 2000);
+
   } catch (err) {
     error.value = err.message || 'Erro ao cadastrar imóvel. Tente novamente.';
   } finally {
@@ -126,15 +134,15 @@ const handleSubmit = async () => {
   }
 };
 
-const voltarParaHome = () => {
-  router.push('/');
+const voltarParaDashboard = () => {
+  router.push('/admin/dashboard');
 };
 </script>
 
 <template>
   <div class="cadastro-container">
     <div class="cadastro-card">
-      <button @click="voltarParaHome" class="btn btn-secondary btn-voltar">
+      <button @click="voltarParaDashboard" class="btn btn-secondary btn-voltar">
         ← Voltar
       </button>
       <h1 class="cadastro-title">Cadastrar Imóvel</h1>
@@ -291,6 +299,17 @@ const voltarParaHome = () => {
                 placeholder="Ex: Centro"
               />
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="endereco">Endereço Completo</label>
+            <input
+              type="text"
+              id="endereco"
+              v-model="form.endereco"
+              class="form-input"
+              placeholder="Ex: Rua Example, 123 - Apto 45"
+            />
           </div>
         </section>
 
