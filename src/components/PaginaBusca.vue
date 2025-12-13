@@ -180,17 +180,28 @@ onMounted(() => {
 
     <!-- Formulário de Filtros -->
     <div class="filtros-card">
-      <h2 class="filtros-title">Filtros de Busca</h2>
+      <h2 class="filtros-title">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        </svg>
+        Filtros de Busca
+      </h2>
       <form @submit.prevent="aplicarFiltros" class="filtros-form">
         <!-- Busca por texto -->
-        <div class="form-group full-width">
-          <label for="texto_busca">Buscar por palavra-chave</label>
+        <div class="form-group full-width search-group">
+          <label for="texto_busca">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            Buscar por palavra-chave
+          </label>
           <input
             type="text"
             id="texto_busca"
             v-model="filtros.texto_busca"
             placeholder="Digite título, descrição, cidade ou bairro..."
-            class="form-input"
+            class="form-input search-input"
           />
         </div>
 
@@ -335,6 +346,7 @@ onMounted(() => {
             </div>
 
             <div class="imovel-content">
+              <span class="imovel-tipo">{{ imovel.tipo_imovel }}</span>
               <h3 class="imovel-titulo">{{ imovel.titulo }}</h3>
 
               <p class="imovel-preco">
@@ -347,17 +359,39 @@ onMounted(() => {
               </p>
 
               <p class="imovel-localizacao">
-                📍 {{ imovel.bairro }}, {{ imovel.cidade }}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                {{ imovel.bairro }}, {{ imovel.cidade }}
               </p>
 
               <div class="imovel-specs">
-                <span class="spec-item">🛏️ {{ imovel.quartos }} quarto(s)</span>
-                <span class="spec-item">🚿 {{ imovel.banheiros }} banheiro(s)</span>
+                <span class="spec-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                  {{ imovel.quartos }}
+                </span>
+                <span class="spec-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 6h11M12 12h8M9 18h11M3 6h.01M3 12h.01M3 18h.01"/>
+                  </svg>
+                  {{ imovel.banheiros }}
+                </span>
                 <span v-if="imovel.area_util_m2" class="spec-item">
-                  📏 {{ imovel.area_util_m2 }} m²
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  </svg>
+                  {{ imovel.area_util_m2 }}m²
                 </span>
                 <span v-if="imovel.vagas_garagem" class="spec-item">
-                  🚗 {{ imovel.vagas_garagem }} vaga(s)
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/>
+                    <circle cx="7" cy="17" r="2"/>
+                    <circle cx="17" cy="17" r="2"/>
+                  </svg>
+                  {{ imovel.vagas_garagem }}
                 </span>
               </div>
             </div>
@@ -400,15 +434,50 @@ onMounted(() => {
 }
 
 .filtros-title {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
   color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.filtros-title svg {
+  color: #3498db;
 }
 
 .filtros-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.search-group {
+  position: relative;
+}
+
+.search-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.search-group label svg {
+  color: #3498db;
+}
+
+.search-input {
+  font-size: 1.05rem;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+}
+
+.search-input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 .filtros-row {
@@ -452,6 +521,17 @@ onMounted(() => {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.filtros-actions .btn {
+  flex: 1;
+  min-width: 200px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .loading {
@@ -554,36 +634,79 @@ onMounted(() => {
   padding: 1.5rem;
 }
 
+.imovel-tipo {
+  display: inline-block;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 0.75rem;
+}
+
 .imovel-titulo {
   font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   color: #2c3e50;
+  font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  min-height: 2.8em;
 }
 
 .imovel-preco {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #27ae60;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.imovel-preco span {
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: #7f8c8d;
 }
 
 .imovel-localizacao {
   color: #7f8c8d;
   margin-bottom: 1rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.imovel-localizacao svg {
+  flex-shrink: 0;
+  color: #3498db;
 }
 
 .imovel-specs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ecf0f1;
 }
 
 .spec-item {
   font-size: 0.9rem;
   color: #555;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.spec-item svg {
+  color: #3498db;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
