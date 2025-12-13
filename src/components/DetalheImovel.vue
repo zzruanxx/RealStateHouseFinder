@@ -68,8 +68,11 @@ const formatarPreco = (preco) => {
 };
 
 const enviarContato = () => {
-  // TODO: Implementar envio do formulário
-  // Exemplo: salvar em uma coleção de leads no Appwrite
+  // TODO: Implementar integração real de envio
+  // Opções sugeridas:
+  // 1. Salvar em uma coleção 'leads' no Appwrite com dados do imóvel e contato
+  // 2. Enviar email via serviço SMTP ou API (SendGrid, Mailgun)
+  // 3. Notificar corretor via webhook ou integração com CRM
   contatoEnviado.value = true;
 
   // Limpar formulário
@@ -144,6 +147,10 @@ const copiarLink = () => {
 };
 
 // Keyboard navigation for lightbox
+// Supported shortcuts:
+// - ESC: Close lightbox
+// - Arrow Left: Previous photo
+// - Arrow Right: Next photo
 const handleKeydown = (event) => {
   if (!showLightbox.value) return;
   
