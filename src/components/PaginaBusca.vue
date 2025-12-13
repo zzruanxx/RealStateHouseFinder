@@ -180,17 +180,28 @@ onMounted(() => {
 
     <!-- Formulário de Filtros -->
     <div class="filtros-card">
-      <h2 class="filtros-title">Filtros de Busca</h2>
+      <h2 class="filtros-title">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        </svg>
+        Filtros de Busca
+      </h2>
       <form @submit.prevent="aplicarFiltros" class="filtros-form">
         <!-- Busca por texto -->
-        <div class="form-group full-width">
-          <label for="texto_busca">Buscar por palavra-chave</label>
+        <div class="form-group full-width search-group">
+          <label for="texto_busca">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            Buscar por palavra-chave
+          </label>
           <input
             type="text"
             id="texto_busca"
             v-model="filtros.texto_busca"
             placeholder="Digite título, descrição, cidade ou bairro..."
-            class="form-input"
+            class="form-input search-input"
           />
         </div>
 
@@ -423,15 +434,50 @@ onMounted(() => {
 }
 
 .filtros-title {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
   color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.filtros-title svg {
+  color: #3498db;
 }
 
 .filtros-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.search-group {
+  position: relative;
+}
+
+.search-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.search-group label svg {
+  color: #3498db;
+}
+
+.search-input {
+  font-size: 1.05rem;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+}
+
+.search-input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 .filtros-row {
@@ -475,6 +521,17 @@ onMounted(() => {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.filtros-actions .btn {
+  flex: 1;
+  min-width: 200px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .loading {

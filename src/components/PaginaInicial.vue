@@ -89,15 +89,16 @@ onMounted(() => {
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-content">
+        <div class="hero-badge">🏆 Portal Imobiliário de Confiança</div>
         <h1 class="hero-title">Duarte Consultor Imobiliário</h1>
-        <p class="hero-subtitle">Encontre o imóvel dos seus sonhos</p>
+        <p class="hero-subtitle">Encontre o imóvel dos seus sonhos com facilidade e segurança</p>
 
         <form @submit.prevent="buscarHero" class="hero-busca">
           <div class="hero-busca-fields">
             <input
               type="text"
               v-model="buscaHero.cidade"
-              placeholder="Cidade"
+              placeholder="Qual cidade você procura?"
               class="hero-input"
             />
             <select v-model="buscaHero.tipo_imovel" class="hero-select">
@@ -109,10 +110,39 @@ onMounted(() => {
               <option value="rural">Rural</option>
             </select>
             <button type="submit" class="btn btn-primary hero-btn">
-              Buscar Imóveis
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+              Buscar
             </button>
           </div>
         </form>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            </svg>
+            <span class="stat-label">Milhares de Imóveis</span>
+          </div>
+          <div class="stat-item">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span class="stat-label">Corretores Especializados</span>
+          </div>
+          <div class="stat-item">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span class="stat-label">Negócios Realizados</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -256,34 +286,65 @@ onMounted(() => {
 .hero-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 5rem 1rem;
+  padding: 6rem 1rem 4rem;
   margin: -2rem -1rem 2rem -1rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.05)" stroke-width="1" fill="none"/></svg>') repeat;
+  opacity: 0.3;
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
-  font-weight: bold;
+  font-weight: 800;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  margin-bottom: 3rem;
   opacity: 0.95;
+  line-height: 1.6;
+  font-weight: 300;
 }
 
 .hero-busca {
   background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  margin-bottom: 3rem;
 }
 
 .hero-busca-fields {
@@ -294,21 +355,58 @@ onMounted(() => {
 
 .hero-input,
 .hero-select {
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 1.1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1rem;
+  transition: all 0.3s;
 }
 
 .hero-input:focus,
 .hero-select:focus {
   outline: none;
   border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 .hero-btn {
-  padding: 1rem 2rem;
+  padding: 1.1rem 2.5rem;
   white-space: nowrap;
+  font-weight: 600;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.hero-btn:hover {
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stat-item svg {
+  opacity: 0.9;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.9;
 }
 
 /* Destaques Section */
@@ -553,24 +651,81 @@ onMounted(() => {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero-section {
+    padding: 4rem 1rem 3rem;
+  }
+
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+  }
+
   .hero-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-busca {
+    padding: 1.5rem;
   }
 
   .hero-busca-fields {
     grid-template-columns: 1fr;
   }
 
+  .hero-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .stat-item svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+  }
+
   .imoveis-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .sobre-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-stats {
+    gap: 1rem;
+  }
+
+  .stat-item {
+    gap: 0.5rem;
+  }
+
+  .stat-item svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
   }
 }
 </style>
