@@ -4,12 +4,16 @@ Portal imobiliário completo desenvolvido com Vue.js 3 e Appwrite BaaS.
 
 ## 🏠 Sobre o Projeto
 
-Este é um sistema completo de portal imobiliário que permite:
+Este é um sistema completo de portal imobiliário **alinhado aos padrões dos melhores portais do mercado** que permite:
 - Buscar e filtrar imóveis por diversos critérios
-- Visualizar detalhes completos dos imóveis com galeria de fotos
+- Visualizar detalhes completos dos imóveis com galeria de fotos **e lightbox**
+- **Contato direto via WhatsApp** (botão flutuante + página de detalhes)
+- **Compartilhamento social** de imóveis
 - Administração de imóveis (cadastro, edição, exclusão)
 - Sistema de autenticação para corretores
 - Formulário de contato para interessados
+- **Design profissional** com ícones SVG e hierarquia visual clara
+- **Totalmente responsivo** para mobile, tablet e desktop
 
 ## 🚀 Tecnologias
 
@@ -124,12 +128,28 @@ VITE_APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
 VITE_APPWRITE_PROJECT_ID=seu_project_id_aqui
 ```
 
-5. Inicie o servidor de desenvolvimento:
+5. Configure as informações de contato em `src/config.js`:
+```javascript
+export const config = {
+  contact: {
+    phone: '5511999999999', // Seu número WhatsApp
+    phoneFormatted: '(11) 99999-9999',
+    email: 'contato@duarteimoveis.com.br',
+    whatsappMessage: 'Olá! Gostaria de mais informações sobre imóveis.'
+  },
+  company: {
+    name: 'Duarte Consultor Imobiliário',
+    slogan: 'Encontre o imóvel dos seus sonhos'
+  }
+};
+```
+
+6. Inicie o servidor de desenvolvimento:
 ```bash
 npm run dev
 ```
 
-6. Acesse a aplicação em `http://localhost:5173`
+7. Acesse a aplicação em `http://localhost:5173`
 
 ## 📦 Build para Produção
 
@@ -146,7 +166,7 @@ src/
 ├── components/
 │   ├── PaginaInicial.vue      # Página inicial com hero e destaques
 │   ├── PaginaBusca.vue         # Página de busca com filtros avançados
-│   ├── DetalheImovel.vue       # Página de detalhes do imóvel
+│   ├── DetalheImovel.vue       # Página de detalhes do imóvel (lightbox + WhatsApp)
 │   ├── AdminLogin.vue          # Login administrativo
 │   ├── AdminDashboard.vue      # Painel de controle administrativo
 │   ├── CadastrarImovel.vue     # Formulário de cadastro
@@ -155,24 +175,30 @@ src/
 ├── router/
 │   └── index.js                # Configuração de rotas
 ├── appwrite.js                 # Configuração do Appwrite
-├── App.vue                     # Componente principal
+├── config.js                   # Configurações do portal (contato, empresa)
+├── App.vue                     # Componente principal (WhatsApp flutuante)
 └── main.js                     # Entry point
 ```
 
 ## 🎯 Funcionalidades
 
 ### Para Visitantes:
-- ✅ Página inicial com imóveis em destaque
-- ✅ Busca de imóveis com múltiplos filtros avançados
+- ✅ **Hero Section Profissional** com badge de confiança e estatísticas
+- ✅ **Página inicial** com imóveis em destaque e design moderno
+- ✅ **Busca de imóveis** com múltiplos filtros avançados
   - 🔍 Busca por texto (título, descrição, cidade, bairro)
   - 🏠 Filtros por tipo de imóvel e tipo de anúncio
   - 💰 Filtros por faixa de preço (mínimo e máximo)
   - 🛏️ Filtros por número de quartos e banheiros
   - 📊 Ordenação por preço ou data
-- ✅ Visualização detalhada de imóveis
-- ✅ Galeria de fotos dos imóveis com miniaturas
-- ✅ Formulário de contato
-- ✅ Design responsivo e acessível
+- ✅ **Cards de imóveis aprimorados** com ícones SVG profissionais
+- ✅ **Visualização detalhada** de imóveis
+- ✅ **Galeria de fotos com lightbox** (navegação por setas e teclado)
+- ✅ **WhatsApp integrado** (botão flutuante + página de detalhes)
+- ✅ **Compartilhamento social** de imóveis
+- ✅ **Formulário de contato**
+- ✅ **Design responsivo e acessível** (mobile-first)
+- ✅ **Footer completo** com informações de contato
 
 ### Para Corretores (Admin):
 - ✅ Sistema de login seguro
@@ -204,11 +230,20 @@ src/
 
 ## 🎨 Personalização
 
+### Informações de Contato
+
+Configure suas informações em `src/config.js`:
+- Número do WhatsApp
+- E-mail de contato
+- Nome da empresa
+- Slogan
+
 ### Cores
 
 As cores principais podem ser alteradas no arquivo `src/App.vue`:
 - Primary: `#3498db` (azul)
 - Success: `#27ae60` (verde)
+- WhatsApp: `#25D366` (verde WhatsApp)
 - Background: `#f5f5f5` (cinza claro)
 - Dark: `#2c3e50` (cinza escuro)
 
@@ -217,6 +252,18 @@ As cores principais podem ser alteradas no arquivo `src/App.vue`:
 Substitua o texto no header por uma imagem/logo se desejar.
 
 ## 🆕 Melhorias Implementadas (Recentes)
+
+### 🎉 Atualização 2.1 - Padrões de Mercado
+Veja [PORTAL_IMPROVEMENTS.md](PORTAL_IMPROVEMENTS.md) para documentação completa.
+
+#### Destaques:
+- **WhatsApp Integrado**: Botão flutuante global + botão na página de detalhes
+- **Lightbox de Fotos**: Galeria full-screen com navegação por teclado
+- **Compartilhamento Social**: Web Share API com fallback
+- **Hero Modernizado**: Badge de confiança, estatísticas visuais
+- **Ícones SVG Profissionais**: Substituindo emojis em todos os cards
+- **Design Responsivo Aprimorado**: Mobile-first em todos os componentes
+- **Configuração Centralizada**: src/config.js para contatos e empresa
 
 ### Administração Completa
 - **Dashboard Administrativo**: Painel completo para gerenciar todos os imóveis cadastrados
