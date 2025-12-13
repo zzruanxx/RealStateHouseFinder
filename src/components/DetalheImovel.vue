@@ -1,7 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { databases, storage, DB_ID, COLLECTION_IMOVEIS_ID, BUCKET_FOTOS_ID } from '../appwrite';
+import { config } from '../config';
 
 const route = useRoute();
 const router = useRouter();
@@ -67,9 +68,8 @@ const formatarPreco = (preco) => {
 };
 
 const enviarContato = () => {
-  // Aqui você pode implementar o envio do formulário
-  // Por exemplo, salvar em uma coleção de leads no Appwrite
-  console.log('Formulário de contato:', formContato.value);
+  // TODO: Implementar envio do formulário
+  // Exemplo: salvar em uma coleção de leads no Appwrite
   contatoEnviado.value = true;
 
   // Limpar formulário
@@ -113,9 +113,8 @@ const fotoAnterior = () => {
 
 // WhatsApp
 const contatarWhatsApp = () => {
-  const telefone = '5511999999999'; // Configure o número do corretor
   const mensagem = `Olá! Tenho interesse no imóvel: ${imovel.value.titulo}`;
-  const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+  const url = `https://wa.me/${config.contact.phone}?text=${encodeURIComponent(mensagem)}`;
   window.open(url, '_blank');
 };
 
@@ -144,8 +143,26 @@ const copiarLink = () => {
   alert('Link copiado para a área de transferência!');
 };
 
+// Keyboard navigation for lightbox
+const handleKeydown = (event) => {
+  if (!showLightbox.value) return;
+  
+  if (event.key === 'Escape') {
+    fecharLightbox();
+  } else if (event.key === 'ArrowLeft') {
+    fotoAnterior();
+  } else if (event.key === 'ArrowRight') {
+    proximaFoto();
+  }
+};
+
 onMounted(() => {
   carregarImovel();
+  window.addEventListener('keydown', handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown);
 });
 </script>
 

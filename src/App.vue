@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { account } from './appwrite';
+import { config } from './config';
 
 const router = useRouter();
 const isLoggedIn = ref(false);
@@ -59,23 +60,23 @@ onMounted(() => {
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-info">
-          <h3>Duarte Consultor Imobiliário</h3>
-          <p>Encontre o imóvel dos seus sonhos</p>
-          <p>📞 (11) 99999-9999 | 📧 contato@duarteimoveis.com.br</p>
+          <h3>{{ config.company.name }}</h3>
+          <p>{{ config.company.slogan }}</p>
+          <p>📞 {{ config.contact.phoneFormatted }} | 📧 {{ config.contact.email }}</p>
         </div>
         <div class="footer-links">
           <router-link to="/">Home</router-link>
           <router-link to="/busca">Buscar Imóveis</router-link>
           <router-link to="/admin/login">Área do Corretor</router-link>
         </div>
-        <p class="footer-copyright">&copy; 2025 Duarte Consultor Imobiliário. Todos os direitos reservados.</p>
+        <p class="footer-copyright">&copy; 2025 {{ config.company.name }}. Todos os direitos reservados.</p>
       </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
     <a 
       v-if="!isLoggedIn" 
-      href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20imóveis."
+      :href="`https://wa.me/${config.contact.phone}?text=${encodeURIComponent(config.contact.whatsappMessage)}`"
       target="_blank"
       rel="noopener noreferrer"
       class="whatsapp-float"
