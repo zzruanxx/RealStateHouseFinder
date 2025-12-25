@@ -170,27 +170,33 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="busca-container">
+  <div class="search-container">
     <div class="page-header">
-      <button @click="voltarParaHome" class="btn btn-secondary btn-voltar">
-        ← Voltar
+      <button @click="voltarParaHome" class="back-btn">
+        <svg class="back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Voltar
       </button>
-      <h1 class="busca-title">Buscar Imóveis</h1>
+      <h1 class="page-title">Buscar Imóveis</h1>
     </div>
 
-    <!-- Formulário de Filtros -->
-    <div class="filtros-card">
-      <h2 class="filtros-title">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
-        </svg>
-        Filtros de Busca
-      </h2>
-      <form @submit.prevent="aplicarFiltros" class="filtros-form">
-        <!-- Busca por texto -->
-        <div class="form-group full-width search-group">
-          <label for="texto_busca">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- Filtros Aprimorados -->
+    <div class="filters-section">
+      <div class="filters-header">
+        <div class="filters-title">
+          <svg class="title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+          </svg>
+          Filtros de Busca
+        </div>
+      </div>
+
+      <form @submit.prevent="aplicarFiltros" class="filters-form">
+        <!-- Campo de busca por texto -->
+        <div class="search-field">
+          <label class="field-label">
+            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"/>
               <path d="m21 21-4.35-4.35"/>
             </svg>
@@ -198,26 +204,25 @@ onMounted(() => {
           </label>
           <input
             type="text"
-            id="texto_busca"
             v-model="filtros.texto_busca"
             placeholder="Digite título, descrição, cidade ou bairro..."
-            class="form-input search-input"
+            class="search-input"
           />
         </div>
 
-        <div class="filtros-row">
-          <div class="form-group">
-            <label for="tipo_anuncio">Tipo de Negócio</label>
-            <select id="tipo_anuncio" v-model="filtros.tipo_anuncio" class="form-select">
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label class="field-label">Tipo de Negócio</label>
+            <select v-model="filtros.tipo_anuncio" class="filter-select">
               <option value="">Todos</option>
               <option value="venda">Venda</option>
               <option value="aluguel">Aluguel</option>
             </select>
           </div>
 
-          <div class="form-group">
-            <label for="tipo_imovel">Tipo de Imóvel</label>
-            <select id="tipo_imovel" v-model="filtros.tipo_imovel" class="form-select">
+          <div class="filter-group">
+            <label class="field-label">Tipo de Imóvel</label>
+            <select v-model="filtros.tipo_imovel" class="filter-select">
               <option value="">Todos</option>
               <option value="apartamento">Apartamento</option>
               <option value="casa">Casa</option>
@@ -227,68 +232,63 @@ onMounted(() => {
             </select>
           </div>
 
-          <div class="form-group">
-            <label for="cidade">Cidade</label>
+          <div class="filter-group">
+            <label class="field-label">Cidade</label>
             <input
               type="text"
-              id="cidade"
               v-model="filtros.cidade"
               placeholder="Ex: São Paulo"
-              class="form-input"
+              class="filter-input"
             />
           </div>
 
-          <div class="form-group">
-            <label for="quartos_min">Quartos (mínimo)</label>
+          <div class="filter-group">
+            <label class="field-label">Quartos (mínimo)</label>
             <input
               type="number"
-              id="quartos_min"
               v-model="filtros.quartos_min"
               placeholder="1"
               min="0"
-              class="form-input"
+              class="filter-input"
             />
           </div>
 
-          <div class="form-group">
-            <label for="banheiros_min">Banheiros (mínimo)</label>
+          <div class="filter-group">
+            <label class="field-label">Banheiros (mínimo)</label>
             <input
               type="number"
-              id="banheiros_min"
               v-model="filtros.banheiros_min"
               placeholder="1"
               min="0"
-              class="form-input"
+              class="filter-input"
             />
           </div>
 
-          <div class="form-group">
-            <label for="preco_min">Preço mínimo (R$)</label>
+          <div class="filter-group">
+            <label class="field-label">Preço mínimo (R$)</label>
             <input
               type="number"
-              id="preco_min"
               v-model="filtros.preco_min"
               placeholder="100000"
               step="1000"
-              class="form-input"
+              class="filter-input"
             />
           </div>
 
-          <div class="form-group">
-            <label for="preco_max">Preço máximo (R$)</label>
+          <div class="filter-group">
+            <label class="field-label">Preço máximo (R$)</label>
             <input
               type="number"
-              id="preco_max"
               v-model="filtros.preco_max"
               placeholder="500000"
               step="1000"
-              class="form-input"
+              class="filter-input"
             />
           </div>
 
-          <div class="form-group">
-            <label for="ordenacao">Ordenar por</label>
-            <select id="ordenacao" v-model="ordenacao" class="form-select">
+          <div class="filter-group">
+            <label class="field-label">Ordenar por</label>
+            <select v-model="ordenacao" class="filter-select">
               <option value="recentes">Mais recentes</option>
               <option value="preco_asc">Menor preço</option>
               <option value="preco_desc">Maior preço</option>
@@ -296,103 +296,123 @@ onMounted(() => {
           </div>
         </div>
 
-        <div class="filtros-actions">
-          <button type="submit" class="btn btn-primary">🔍 Buscar</button>
-          <button type="button" @click="limparFiltros" class="btn btn-secondary">
-            🗑️ Limpar Filtros
+        <div class="filters-actions">
+          <button type="submit" class="action-btn primary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            Buscar
+          </button>
+          <button type="button" @click="limparFiltros" class="action-btn secondary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18"/>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+            </svg>
+            Limpar Filtros
           </button>
         </div>
       </form>
     </div>
 
-    <!-- Loading -->
-    <div v-if="isLoading" class="loading">
-      <div class="spinner"></div>
+    <!-- Loading State -->
+    <div v-if="isLoading" class="loading-section">
+      <div class="loading-spinner"></div>
       <p>Carregando imóveis...</p>
     </div>
 
-    <!-- Sem Resultados -->
-    <div v-else-if="imoveis.length === 0" class="no-results">
-      <p>Nenhum imóvel encontrado com os filtros selecionados.</p>
-      <button @click="limparFiltros" class="btn btn-secondary">
-        Ver todos os imóveis
-      </button>
+    <!-- Empty State -->
+    <div v-else-if="imoveis.length === 0" class="empty-section">
+      <div class="empty-content">
+        <div class="empty-icon">🏠</div>
+        <h3>Nenhum imóvel encontrado</h3>
+        <p>Não encontramos imóveis com os filtros selecionados.</p>
+        <button @click="limparFiltros" class="empty-btn">
+          Ver todos os imóveis
+        </button>
+      </div>
     </div>
 
     <!-- Resultados -->
-    <div v-else class="resultados">
-      <p class="resultados-count">{{ imoveis.length }} imóvel(is) encontrado(s)</p>
+    <div v-else class="results-section">
+      <div class="results-header">
+        <p class="results-count">{{ imoveis.length }} imóvel(is) encontrado(s)</p>
+      </div>
 
-      <div class="imoveis-grid">
+      <div class="properties-grid">
         <router-link
           v-for="imovel in imoveis"
           :key="imovel.$id"
           :to="{ name: 'DetalheImovel', params: { id: imovel.$id } }"
-          class="imovel-card-link"
+          class="property-link"
         >
-          <div class="imovel-card">
-            <div class="imovel-foto">
+          <div class="property-card">
+            <div class="property-image">
               <img
                 v-if="imovel.fotoUrl"
                 :src="imovel.fotoUrl"
                 :alt="`${imovel.titulo} - ${imovel.cidade}`"
                 loading="lazy"
-                class="foto-img"
+                class="image"
               />
-              <div v-else class="foto-placeholder">
+              <div v-else class="image-placeholder">
                 <span>Sem foto</span>
               </div>
-              <span class="imovel-badge">{{ imovel.tipo_anuncio }}</span>
+              <div class="property-type">{{ imovel.tipo_imovel }}</div>
+              <div class="property-status">{{ imovel.tipo_anuncio }}</div>
             </div>
 
-            <div class="imovel-content">
-              <span class="imovel-tipo">{{ imovel.tipo_imovel }}</span>
-              <h3 class="imovel-titulo">{{ imovel.titulo }}</h3>
+            <div class="property-content">
+              <div class="property-type-badge">{{ imovel.tipo_imovel }}</div>
+              <h3 class="property-title">{{ imovel.titulo }}</h3>
 
-              <p class="imovel-preco">
-                {{
-                  imovel.tipo_anuncio === 'aluguel'
-                    ? formatarPreco(imovel.preco_aluguel)
-                    : formatarPreco(imovel.preco_venda)
-                }}
-                <span v-if="imovel.tipo_anuncio === 'aluguel'">/mês</span>
-              </p>
+              <div class="property-price">
+                <span class="price-value">
+                  {{
+                    imovel.tipo_anuncio === 'aluguel'
+                      ? formatarPreco(imovel.preco_aluguel)
+                      : formatarPreco(imovel.preco_venda)
+                  }}
+                </span>
+                <span v-if="imovel.tipo_anuncio === 'aluguel'" class="price-period">/mês</span>
+              </div>
 
-              <p class="imovel-localizacao">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <div class="property-location">
+                <svg class="location-icon" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
                 {{ imovel.bairro }}, {{ imovel.cidade }}
-              </p>
+              </div>
 
-              <div class="imovel-specs">
-                <span class="spec-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="property-features">
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                     <polyline points="9 22 9 12 15 12 15 22"/>
                   </svg>
                   {{ imovel.quartos }}
-                </span>
-                <span class="spec-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                </div>
+                <div class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 6h11M12 12h8M9 18h11M3 6h.01M3 12h.01M3 18h.01"/>
                   </svg>
                   {{ imovel.banheiros }}
-                </span>
-                <span v-if="imovel.area_util_m2" class="spec-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                </div>
+                <div v-if="imovel.area_util_m2" class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="3" width="18" height="18" rx="2"/>
                   </svg>
                   {{ imovel.area_util_m2 }}m²
-                </span>
-                <span v-if="imovel.vagas_garagem" class="spec-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                </div>
+                <div v-if="imovel.vagas_garagem" class="feature-item">
+                  <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/>
                     <circle cx="7" cy="17" r="2"/>
                     <circle cx="17" cy="17" r="2"/>
                   </svg>
                   {{ imovel.vagas_garagem }}
-                </span>
+                </div>
               </div>
             </div>
           </div>
@@ -403,8 +423,10 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.busca-container {
+.search-container {
   padding: 1rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .page-header {
@@ -414,139 +436,200 @@ onMounted(() => {
   margin-bottom: 2rem;
 }
 
-.btn-voltar {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-}
-
-.busca-title {
-  font-size: 2rem;
-  margin-bottom: 0;
-  color: #2c3e50;
-}
-
-.filtros-card {
-  background: white;
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
   border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #6c757d;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.back-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Filtros Section */
+.filters-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   margin-bottom: 2rem;
 }
 
-.filtros-title {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: #2c3e50;
+.filters-header {
+  margin-bottom: 2rem;
+}
+
+.filters-title {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  font-size: 1.5rem;
+  color: #2c3e50;
   font-weight: 600;
 }
 
-.filtros-title svg {
-  color: #3498db;
+.title-icon {
+  width: 24px;
+  height: 24px;
+  color: #667eea;
 }
 
-.filtros-form {
+.filters-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.search-group {
-  position: relative;
+.search-field {
+  width: 100%;
 }
 
-.search-group label {
+.field-label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
   font-weight: 600;
+  color: #2c3e50;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.search-group label svg {
-  color: #3498db;
+.label-icon {
+  width: 18px;
+  height: 18px;
+  color: #667eea;
 }
 
 .search-input {
-  font-size: 1.05rem;
-  padding: 1rem;
-  border: 2px solid #e0e0e0;
+  width: 100%;
+  padding: 1.2rem 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .search-input:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.filtros-row {
+.filters-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
 }
 
-.form-group {
+.filter-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
-
-.form-group label {
-  font-weight: 600;
-  color: #2c3e50;
-  font-size: 0.9rem;
-}
-
-.form-input,
-.form-select {
-  padding: 0.75rem;
+.filter-input,
+.filter-select {
+  padding: 0.9rem 1rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  background: white;
+  transition: all 0.3s ease;
 }
 
-.form-input:focus,
-.form-select:focus {
+.filter-input:focus,
+.filter-select:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.filtros-actions {
+.filters-actions {
   display: flex;
   gap: 1rem;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-top: 0.5rem;
 }
 
-.filtros-actions .btn {
-  flex: 1;
-  min-width: 200px;
-  font-weight: 600;
+.action-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+  justify-content: center;
 }
 
-.loading {
+.action-btn.primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.action-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.action-btn.secondary {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #e9ecef;
+}
+
+.action-btn.secondary:hover {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Loading */
+.loading-section {
   text-align: center;
-  padding: 3rem;
+  padding: 4rem 2rem;
 }
 
-.spinner {
+.loading-spinner {
+  width: 60px;
+  height: 60px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  border-top: 4px solid #667eea;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
   animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.5rem;
 }
 
 @keyframes spin {
@@ -554,140 +637,211 @@ onMounted(() => {
   100% { transform: rotate(360deg); }
 }
 
-.no-results {
+/* Empty State */
+.empty-section {
   text-align: center;
-  padding: 3rem;
+  padding: 4rem 2rem;
   background: white;
-  border-radius: 8px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-.no-results p {
+.empty-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.empty-icon {
+  font-size: 4rem;
   margin-bottom: 1rem;
+}
+
+.empty-content h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.empty-content p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.empty-btn {
+  padding: 1rem 2rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.empty-btn:hover {
+  background: #5a67d8;
+  transform: translateY(-2px);
+}
+
+/* Results */
+.results-section {
+  margin-top: 2rem;
+}
+
+.results-header {
+  margin-bottom: 2rem;
+}
+
+.results-count {
   font-size: 1.1rem;
   color: #7f8c8d;
+  text-align: center;
 }
 
-.resultados-count {
-  margin-bottom: 1rem;
-  color: #7f8c8d;
-}
-
-.imoveis-grid {
+.properties-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
 }
 
-.imovel-card-link {
+.property-link {
   text-decoration: none;
   color: inherit;
+  transition: transform 0.3s ease;
 }
 
-.imovel-card {
+.property-link:hover {
+  transform: translateY(-8px);
+}
+
+.property-card {
   background: white;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
 }
 
-.imovel-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.property-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
-.imovel-foto {
+.property-image {
   position: relative;
-  height: 200px;
-  background-color: #f0f0f0;
+  height: 220px;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  overflow: hidden;
 }
 
-.foto-img {
+.image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.foto-placeholder {
+.property-card:hover .image {
+  transform: scale(1.05);
+}
+
+.image-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #aaa;
+  color: #adb5bd;
+  font-size: 1.1rem;
 }
 
-.imovel-badge {
+.property-type,
+.property-status {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #3498db;
-  color: white;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
-.imovel-content {
+.property-type {
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2c3e50;
+}
+
+.property-status {
+  top: 12px;
+  right: 12px;
+  background: #667eea;
+  color: white;
+}
+
+.property-content {
   padding: 1.5rem;
 }
 
-.imovel-tipo {
+.property-type-badge {
   display: inline-block;
-  background-color: #ecf0f1;
+  background: #ecf0f1;
   color: #2c3e50;
   padding: 0.25rem 0.75rem;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: capitalize;
   margin-bottom: 0.75rem;
 }
 
-.imovel-titulo {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-  color: #2c3e50;
+.property-title {
+  font-size: 1.3rem;
   font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  line-height: 1.4;
-  min-height: 2.8em;
 }
 
-.imovel-preco {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #27ae60;
+.property-price {
   margin-bottom: 0.75rem;
 }
 
-.imovel-preco span {
-  font-size: 0.875rem;
-  font-weight: normal;
-  color: #7f8c8d;
+.price-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #27ae60;
 }
 
-.imovel-localizacao {
+.price-period {
+  font-size: 0.9rem;
   color: #7f8c8d;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
+  font-weight: normal;
+}
+
+.property-location {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: #7f8c8d;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
 }
 
-.imovel-localizacao svg {
+.location-icon {
+  width: 16px;
+  height: 16px;
+  color: #667eea;
   flex-shrink: 0;
-  color: #3498db;
 }
 
-.imovel-specs {
+.property-features {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
@@ -695,27 +849,83 @@ onMounted(() => {
   border-top: 1px solid #ecf0f1;
 }
 
-.spec-item {
-  font-size: 0.9rem;
-  color: #555;
+.feature-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
   font-weight: 500;
 }
 
-.spec-item svg {
-  color: #3498db;
+.feature-icon {
+  width: 16px;
+  height: 16px;
+  color: #667eea;
   flex-shrink: 0;
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
-  .filtros-row {
-    grid-template-columns: 1fr;
+  .search-container {
+    padding: 1rem;
   }
 
-  .imoveis-grid {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .filters-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .filters-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .filters-actions {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .properties-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .empty-section {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .search-input {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .filter-input,
+  .filter-select {
+    padding: 0.8rem;
+  }
+
+  .property-card {
+    margin: 0 -0.5rem;
   }
 }
 </style>
