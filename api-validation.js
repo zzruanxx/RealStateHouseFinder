@@ -190,6 +190,16 @@ async function testQueryFilters() {
   }
 }
 
+// Preview dimensions for image optimization
+const PREVIEW_DIMENSIONS = {
+  LIST_WIDTH: 400,
+  LIST_HEIGHT: 300,
+  GALLERY_WIDTH: 800,
+  GALLERY_HEIGHT: 600,
+  CENTER: 'center',
+  QUALITY: 100
+};
+
 async function testStorageAccess() {
   logSection('5. STORAGE ACCESS');
   
@@ -214,7 +224,12 @@ async function testStorageAccess() {
       // Test file preview URL generation
       if (files.files.length > 0) {
         const fileId = files.files[0].$id;
-        const previewUrl = storage.getFilePreview(BUCKET_FOTOS_ID, fileId, 400, 300);
+        const previewUrl = storage.getFilePreview(
+          BUCKET_FOTOS_ID, 
+          fileId, 
+          PREVIEW_DIMENSIONS.LIST_WIDTH, 
+          PREVIEW_DIMENSIONS.LIST_HEIGHT
+        );
         if (previewUrl && previewUrl.href) {
           logTest('Generate file preview URL', 'pass', `URL: ${previewUrl.href.substring(0, 50)}...`);
         } else {
