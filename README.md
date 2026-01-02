@@ -288,6 +288,32 @@ Veja [PORTAL_IMPROVEMENTS.md](PORTAL_IMPROVEMENTS.md) para documentação comple
 - **Endereço Completo**: Campo adicional para endereço detalhado
 - **Status do Imóvel**: Controle de disponibilidade (disponível/vendido/alugado)
 
+## 🧪 Verificação de APIs e Endpoints
+
+Este projeto inclui ferramentas automatizadas para verificar a funcionalidade de todas as APIs:
+
+### Verificação Rápida
+```bash
+# Verificação estática (não requer credenciais)
+node verify-endpoints.js
+
+# Ou use o script automatizado
+./quick-verify.sh
+```
+
+### Validação Completa
+```bash
+# Requer configuração do .env com credenciais do Appwrite
+node api-validation.js
+```
+
+### Documentação das APIs
+- **API_DOCUMENTATION.md** - Documentação técnica completa de todas as APIs
+- **API_VERIFICATION_REPORT.md** - Relatório detalhado da verificação (100% aprovado)
+- **VERIFICATION_TOOLS_README.md** - Guia das ferramentas de verificação
+
+**Status da Verificação:** ✅ 64/64 testes passando (100%)
+
 ## 📝 Licença
 
 Este projeto está sob a licença MIT.
