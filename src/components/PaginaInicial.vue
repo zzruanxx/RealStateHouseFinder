@@ -560,4 +560,6 @@ onMounted(() => {
 .empty-state {
   text-align: center;
   padding: 3rem;
-  color: #7f8c8c
+  color: #7f8c8d;
+}
+</style>
