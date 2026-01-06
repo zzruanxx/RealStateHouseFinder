@@ -562,4 +562,307 @@ onMounted(() => {
   padding: 3rem;
   color: #7f8c8d;
 }
+
+/* Cards de imóveis na home */
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.property-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.property-link:hover {
+  transform: translateY(-8px);
+}
+
+.property-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  border: 1px solid #edf2f7;
+}
+
+.property-card:hover {
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.12);
+}
+
+.property-image {
+  position: relative;
+  height: 220px;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover .image {
+  transform: scale(1.05);
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #adb5bd;
+  font-size: 1.1rem;
+}
+
+.property-type,
+.property-status {
+  position: absolute;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.property-type {
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #2c3e50;
+}
+
+.property-status {
+  top: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.property-content {
+  padding: 1.6rem;
+}
+
+.property-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.property-price {
+  margin-bottom: 0.85rem;
+}
+
+.price-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #27ae60;
+}
+
+.price-period {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.property-location {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #7f8c8d;
+  font-size: 0.98rem;
+  margin-bottom: 1.1rem;
+}
+
+.location-icon {
+  width: 17px;
+  height: 17px;
+  color: #667eea;
+  flex-shrink: 0;
+}
+
+.property-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid #ecf0f1;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.feature-icon {
+  width: 17px;
+  height: 17px;
+  color: #667eea;
+  flex-shrink: 0;
+}
+
+.section-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+/* Sobre a Duarte */
+.about-section {
+  padding: 5rem 1rem;
+  background: linear-gradient(180deg, #f8f9ff 0%, #eef2ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-section::before,
+.about-section::after {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.14), transparent 60%);
+  filter: blur(30px);
+  z-index: 0;
+}
+
+.about-section::after {
+  right: -80px;
+  bottom: -120px;
+  background: radial-gradient(circle at 70% 70%, rgba(118, 75, 162, 0.16), transparent 60%);
+}
+
+.about-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.about-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.about-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: #111827;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.about-card {
+  background: white;
+  padding: 1.75rem;
+  border-radius: 16px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08);
+  border: 1px solid #edf2f7;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+}
+
+.about-card:hover::before {
+  opacity: 1;
+}
+
+.about-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 25px rgba(118, 75, 162, 0.25);
+}
+
+.about-card h3 {
+  font-size: 1.1rem;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.about-card p {
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    padding: 4rem 1rem 3rem;
+    min-height: auto;
+  }
+
+  .search-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .search-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section {
+    padding: 3.5rem 1rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card {
+    padding: 1.25rem;
+  }
+}
 </style>
