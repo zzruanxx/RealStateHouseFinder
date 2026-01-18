@@ -8,6 +8,16 @@ const isLoading = ref(false);
 const success = ref('');
 const error = ref('');
 
+const logout = async () => {
+  try {
+    await account.deleteSession('current');
+    router.push('/');
+  } catch (error) {
+    console.error('Erro ao fazer logout:', error);
+    alert('Erro ao fazer logout. Por favor, tente novamente.');
+  }
+};
+
 // Form fields
 const form = ref({
   titulo: '',
@@ -142,10 +152,16 @@ const voltarParaDashboard = () => {
 <template>
   <div class="cadastro-container">
     <div class="cadastro-card">
-      <button @click="voltarParaDashboard" class="btn btn-secondary btn-voltar">
-        ← Voltar
-      </button>
+      <div class="cadastro-header">
+        <button @click="voltarParaDashboard" class="btn btn-secondary btn-voltar">
+          ← Voltar
+        </button>
+        <button @click="logout" class="btn btn-logout">
+          🚪 Sair
+        </button>
+      </div>
       <h1 class="cadastro-title">Cadastrar Imóvel</h1>
+      <p class="cadastro-subtitle">Preencha os dados do imóvel para cadastrá-lo no sistema</p>
 
       <div v-if="success" class="success-message">
         {{ success }}
@@ -395,26 +411,67 @@ const voltarParaDashboard = () => {
 
 <style scoped>
 .cadastro-container {
-  padding: 2rem 0;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .cadastro-card {
   background: white;
-  border-radius: 8px;
-  padding: 2.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.cadastro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .cadastro-title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
   color: #2c3e50;
+  font-weight: 700;
+}
+
+.cadastro-subtitle {
+  color: #7f8c8d;
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
 }
 
 .btn-voltar {
-  margin-bottom: 1.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s;
+}
+
+.btn-voltar:hover {
+  border-color: #667eea;
+  color: #667eea;
+  transform: translateX(-4px);
+}
+
+.btn-logout {
+  background: white;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background: #e74c3c;
+  color: white;
+  transform: translateY(-2px);
 }
 
 .cadastro-form {
@@ -430,11 +487,16 @@ const voltarParaDashboard = () => {
 }
 
 .section-title {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   color: #2c3e50;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .form-row {
@@ -457,11 +519,11 @@ const voltarParaDashboard = () => {
 .form-input,
 .form-select,
 .form-textarea {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 0.9rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
   font-family: inherit;
 }
 
@@ -469,7 +531,8 @@ const voltarParaDashboard = () => {
 .form-select:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .form-textarea {
@@ -482,36 +545,56 @@ const voltarParaDashboard = () => {
 }
 
 .success-message {
-  background-color: #d4edda;
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
   color: #155724;
-  padding: 1rem;
-  border-radius: 4px;
+  padding: 1.1rem;
+  border-radius: 8px;
   border-left: 4px solid #28a745;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
 }
 
 .error-message {
-  background-color: #fee;
+  background: linear-gradient(135deg, #fee, #fdd);
   color: #c33;
-  padding: 1rem;
-  border-radius: 4px;
+  padding: 1.1rem;
+  border-radius: 8px;
   border-left: 4px solid #c33;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(204, 51, 51, 0.1);
 }
 
 .btn-full {
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none !important;
 }
 
 @media (max-width: 768px) {
   .form-row {
     grid-template-columns: 1fr;
+  }
+
+  .cadastro-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .cadastro-title {
+    font-size: 1.85rem;
+  }
+
+  .cadastro-header {
+    justify-content: center;
   }
 }
 </style>

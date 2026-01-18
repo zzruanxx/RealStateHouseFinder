@@ -79,36 +79,48 @@ const voltarParaHome = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
+  min-height: 75vh;
   padding: 2rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
 }
 
 .login-card {
   background: white;
-  border-radius: 8px;
-  padding: 2.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .btn-voltar {
-  margin-bottom: 1.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s;
+}
+
+.btn-voltar:hover {
+  border-color: #667eea;
+  color: #667eea;
+  transform: translateX(-4px);
 }
 
 .login-title {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
   color: #2c3e50;
   text-align: center;
+  font-weight: 700;
 }
 
 .login-subtitle {
   color: #7f8c8d;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
 }
 
 .login-form {
@@ -126,35 +138,54 @@ const voltarParaHome = () => {
 .form-group label {
   font-weight: 600;
   color: #2c3e50;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
 }
 
 .form-input {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 0.9rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .error-message {
-  background-color: #fee;
+  background: linear-gradient(135deg, #fee, #fdd);
   color: #c33;
-  padding: 0.75rem;
-  border-radius: 4px;
+  padding: 0.9rem;
+  border-radius: 8px;
   border-left: 4px solid #c33;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(204, 51, 51, 0.1);
 }
 
 .btn-full {
   width: 100%;
+  padding: 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none !important;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1.75rem;
+  }
 }
 </style>

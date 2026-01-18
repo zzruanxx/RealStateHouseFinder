@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { databases, storage, DB_ID, COLLECTION_IMOVEIS_ID, BUCKET_FOTOS_ID, ID } from '../appwrite';
+import { databases, storage, account, DB_ID, COLLECTION_IMOVEIS_ID, BUCKET_FOTOS_ID, ID } from '../appwrite';
 
 const router = useRouter();
 const route = useRoute();
@@ -9,6 +9,16 @@ const isLoading = ref(false);
 const isLoadingData = ref(true);
 const success = ref('');
 const error = ref('');
+
+const logout = async () => {
+  try {
+    await account.deleteSession('current');
+    router.push('/');
+  } catch (error) {
+    console.error('Erro ao fazer logout:', error);
+    alert('Erro ao fazer logout. Por favor, tente novamente.');
+  }
+};
 
 // Form fields
 const form = ref({
@@ -188,12 +198,20 @@ onMounted(() => {
 
 <template>
   <div class="editar-container">
-    <div class="editar-header">
-      <h1>Editar Imóvel</h1>
-      <button @click="cancelar" class="btn btn-secondary">
-        ← Voltar
-      </button>
-    </div>
+    <div class="editar-card">
+      <div class="editar-header">
+        <div class="header-left">
+          <h1>Editar Imóvel</h1>
+        </div>
+        <div class="header-actions">
+          <button @click="cancelar" class="btn btn-secondary">
+            ← Voltar
+          </button>
+          <button @click="logout" class="btn btn-logout">
+            🚪 Sair
+          </button>
+        </div>
+      </div>
 
     <!-- Loading inicial -->
     <div v-if="isLoadingData" class="loading">
@@ -466,44 +484,75 @@ onMounted(() => {
         </button>
       </div>
     </form>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .editar-container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem;
+}
+
+.editar-card {
+  background: white;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .editar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.editar-header h1 {
-  font-size: 2rem;
+.header-left h1 {
+  font-size: 2.25rem;
   color: #2c3e50;
   margin: 0;
+  font-weight: 700;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-logout {
+  background: white;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background: #e74c3c;
+  color: white;
+  transform: translateY(-2px);
 }
 
 .loading {
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
 }
 
 .spinner {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  border-top: 4px solid #667eea;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.5rem;
 }
 
 @keyframes spin {
@@ -514,38 +563,47 @@ onMounted(() => {
 .editar-form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .success-message {
-  background-color: #d4edda;
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
   color: #155724;
-  padding: 1rem;
-  border-radius: 4px;
+  padding: 1.1rem;
+  border-radius: 8px;
   border-left: 4px solid #28a745;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
 }
 
 .error-message {
-  background-color: #f8d7da;
+  background: linear-gradient(135deg, #f8d7da, #f5c6cb);
   color: #721c24;
-  padding: 1rem;
-  border-radius: 4px;
+  padding: 1.1rem;
+  border-radius: 8px;
   border-left: 4px solid #dc3545;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
 }
 
 .form-section {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .form-section h2 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   color: #2c3e50;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #f0f0f0;
+  font-weight: 600;
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid #667eea;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .form-grid {
@@ -567,29 +625,31 @@ onMounted(() => {
 .form-group label {
   font-weight: 600;
   color: #2c3e50;
+  font-size: 0.95rem;
 }
 
 .form-input {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 0.9rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 textarea.form-input {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
 }
 
 .form-help {
   color: #7f8c8d;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 
 .fotos-existentes {
@@ -646,7 +706,15 @@ textarea.form-input {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+  border-top: 2px solid #f0f0f0;
+}
+
+.form-actions .btn {
+  padding: 0.9rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
 /* Responsive */
@@ -655,16 +723,29 @@ textarea.form-input {
     grid-template-columns: 1fr;
   }
 
+  .editar-card {
+    padding: 2rem 1.5rem;
+  }
+
   .editar-header {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .header-left h1 {
+    font-size: 1.85rem;
+    text-align: center;
+  }
+
+  .header-actions {
+    justify-content: center;
   }
 
   .form-actions {
     flex-direction: column-reverse;
   }
 
-  .form-actions button {
+  .form-actions .btn {
     width: 100%;
   }
 }
