@@ -10,6 +10,16 @@ const user = ref(null);
 const showDeleteModal = ref(false);
 const imovelToDelete = ref(null);
 
+const logout = async () => {
+  try {
+    await account.deleteSession('current');
+    router.push('/');
+  } catch (error) {
+    console.error('Erro ao fazer logout:', error);
+    alert('Erro ao fazer logout. Por favor, tente novamente.');
+  }
+};
+
 const carregarImoveis = async () => {
   isLoading.value = true;
   try {
@@ -127,10 +137,18 @@ onMounted(() => {
 <template>
   <div class="dashboard-container">
     <div class="dashboard-header">
-      <h1>Meus Imóveis</h1>
-      <button @click="novoImovel" class="btn btn-primary">
-        + Cadastrar Novo Imóvel
-      </button>
+      <div class="header-left">
+        <h1>Meus Imóveis</h1>
+        <p v-if="user" class="user-info">👤 {{ user.name || user.email }}</p>
+      </div>
+      <div class="header-actions">
+        <button @click="novoImovel" class="btn btn-primary">
+          <span class="btn-icon">+</span> Cadastrar Novo Imóvel
+        </button>
+        <button @click="logout" class="btn btn-logout">
+          <span class="btn-icon">🚪</span> Sair
+        </button>
+      </div>
     </div>
 
     <!-- Loading -->
@@ -247,15 +265,56 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
+  background: white;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .dashboard-header h1 {
   font-size: 2rem;
   color: #2c3e50;
   margin: 0;
+  font-weight: 700;
+}
+
+.user-info {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+.btn-logout {
+  background: white;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background: #e74c3c;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
 }
 
 .loading {
@@ -280,25 +339,30 @@ onMounted(() => {
 
 .empty-state {
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 2px dashed #e0e0e0;
 }
 
 .empty-icon {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
 }
 
 .empty-state h2 {
   color: #2c3e50;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 .empty-state p {
   color: #7f8c8d;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
 }
 
 .imoveis-lista {
@@ -309,32 +373,40 @@ onMounted(() => {
 
 .imovel-item {
   display: grid;
-  grid-template-columns: 200px 1fr auto;
-  gap: 1.5rem;
+  grid-template-columns: 220px 1fr auto;
+  gap: 2rem;
   background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #f0f0f0;
 }
 
 .imovel-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: #667eea;
 }
 
 .imovel-foto {
-  width: 200px;
-  height: 150px;
-  border-radius: 8px;
+  width: 220px;
+  height: 165px;
+  border-radius: 10px;
   overflow: hidden;
-  background-color: #f0f0f0;
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  position: relative;
 }
 
 .foto-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.imovel-item:hover .foto-img {
+  transform: scale(1.05);
 }
 
 .foto-placeholder {
@@ -360,28 +432,32 @@ onMounted(() => {
 }
 
 .imovel-header h3 {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: #2c3e50;
   margin: 0;
+  font-weight: 600;
 }
 
 .status-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: bold;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .status-badge.disponivel {
-  background-color: #d4edda;
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
   color: #155724;
+  border: 1px solid #b1dfbb;
 }
 
 .status-badge.vendido,
 .status-badge.alugado {
-  background-color: #f8d7da;
+  background: linear-gradient(135deg, #f8d7da, #f5c6cb);
   color: #721c24;
+  border: 1px solid #f1b0b7;
 }
 
 .imovel-tipo {
@@ -396,10 +472,11 @@ onMounted(() => {
 }
 
 .imovel-preco {
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #27ae60;
   margin-top: 0.5rem;
+  letter-spacing: -0.5px;
 }
 
 .imovel-specs {
@@ -523,12 +600,12 @@ onMounted(() => {
 @media (max-width: 768px) {
   .imovel-item {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .imovel-foto {
     width: 100%;
-    height: 200px;
+    height: 220px;
   }
 
   .imovel-actions {
@@ -544,10 +621,21 @@ onMounted(() => {
   .dashboard-header {
     flex-direction: column;
     align-items: stretch;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .header-left {
+    align-items: center;
+    text-align: center;
   }
 
   .dashboard-header h1 {
     text-align: center;
+    font-size: 1.75rem;
+  }
+
+  .header-actions {
+    justify-content: center;
   }
 }
 </style>
