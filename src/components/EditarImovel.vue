@@ -749,11 +749,4 @@ textarea.form-input {
     width: 100%;
   }
 }
-    flex-direction: column-reverse;
-  }
-
-  .form-actions button {
-    width: 100%;
-  }
-}
 </style>
