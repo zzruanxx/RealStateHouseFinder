@@ -361,7 +361,7 @@ onMounted(() => {
               </div>
               <div class="property-type">{{ imovel.tipo_imovel }}</div>
               <div class="property-status">{{ imovel.tipo_anuncio }}</div>
-              <div class="property-code">COD. {{ imovel.$id.substring(0, 8).toUpperCase() }}</div>
+              <div class="property-code">COD. {{ imovel.$id ? imovel.$id.substring(0, 8).toUpperCase() : 'N/A' }}</div>
             </div>
 
             <div class="property-content">
