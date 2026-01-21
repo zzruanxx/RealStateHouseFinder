@@ -210,6 +210,7 @@ onMounted(() => {
               </div>
               <div class="property-type">{{ imovel.tipo_imovel }}</div>
               <div class="property-status">{{ imovel.tipo_anuncio }}</div>
+              <div class="property-code">COD. {{ imovel.$id ? imovel.$id.substring(0, 8).toUpperCase() : 'N/A' }}</div>
             </div>
 
             <div class="property-content">
@@ -624,7 +625,8 @@ onMounted(() => {
 }
 
 .property-type,
-.property-status {
+.property-status,
+.property-code {
   position: absolute;
   padding: 0.55rem 1rem;
   border-radius: 999px;
@@ -647,6 +649,17 @@ onMounted(() => {
   right: 14px;
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
+}
+
+.property-code {
+  bottom: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.85rem;
+  letter-spacing: 0.5px;
+  font-family: monospace;
 }
 
 .property-content {
