@@ -9,6 +9,7 @@ const imoveis = ref([]);
 const user = ref(null);
 const showDeleteModal = ref(false);
 const imovelToDelete = ref(null);
+const notification = ref({ show: false, message: '', type: 'success' });
 
 // Novos estados para filtros e visualização
 const filtroStatus = ref('todos');
@@ -17,6 +18,14 @@ const filtroTipoAnuncio = ref('todos');
 const buscaTexto = ref('');
 const ordenacao = ref('recente');
 const visualizacao = ref('grid'); // 'grid' ou 'lista'
+
+// Função para mostrar notificações
+const showNotification = (message, type = 'success') => {
+  notification.value = { show: true, message, type };
+  setTimeout(() => {
+    notification.value.show = false;
+  }, 3000);
+};
 
 // Estatísticas computadas
 const estatisticas = computed(() => {
@@ -34,31 +43,41 @@ const estatisticas = computed(() => {
 const imoveisFiltrados = computed(() => {
   let resultado = [...imoveis.value];
   
-  // Filtrar por status
-  if (filtroStatus.value !== 'todos') {
-    resultado = resultado.filter(i => i.status === filtroStatus.value);
-  }
-  
-  // Filtrar por tipo de imóvel
-  if (filtroTipo.value !== 'todos') {
-    resultado = resultado.filter(i => i.tipo_imovel === filtroTipo.value);
-  }
-  
-  // Filtrar por tipo de anúncio
-  if (filtroTipoAnuncio.value !== 'todos') {
-    resultado = resultado.filter(i => i.tipo_anuncio === filtroTipoAnuncio.value);
-  }
-  
-  // Buscar por texto
-  if (buscaTexto.value.trim()) {
-    const busca = buscaTexto.value.toLowerCase();
-    resultado = resultado.filter(i => 
-      i.titulo.toLowerCase().includes(busca) ||
-      i.cidade.toLowerCase().includes(busca) ||
-      i.bairro.toLowerCase().includes(busca) ||
-      (i.descricao && i.descricao.toLowerCase().includes(busca))
-    );
-  }
+  // Aplicar todos os filtros em uma única passagem
+  resultado = resultado.filter(imovel => {
+    // Filtrar por status
+    if (filtroStatus.value !== 'todos' && imovel.status !== filtroStatus.value) {
+      return false;
+    }
+    
+    // Filtrar por tipo de imóvel
+    if (filtroTipo.value !== 'todos' && imovel.tipo_imovel !== filtroTipo.value) {
+      return false;
+    }
+    
+    // Filtrar por tipo de anúncio
+    if (filtroTipoAnuncio.value !== 'todos' && imovel.tipo_anuncio !== filtroTipoAnuncio.value) {
+      return false;
+    }
+    
+    // Buscar por texto
+    if (buscaTexto.value.trim()) {
+      const busca = buscaTexto.value.toLowerCase();
+      const titulo = imovel.titulo?.toLowerCase() || '';
+      const cidade = imovel.cidade?.toLowerCase() || '';
+      const bairro = imovel.bairro?.toLowerCase() || '';
+      const descricao = imovel.descricao?.toLowerCase() || '';
+      
+      if (!titulo.includes(busca) && 
+          !cidade.includes(busca) && 
+          !bairro.includes(busca) && 
+          !descricao.includes(busca)) {
+        return false;
+      }
+    }
+    
+    return true;
+  });
   
   // Ordenar
   switch (ordenacao.value) {
@@ -70,15 +89,17 @@ const imoveisFiltrados = computed(() => {
       break;
     case 'preco-maior':
       resultado.sort((a, b) => {
-        const precoA = a.preco_venda || a.preco_aluguel || 0;
-        const precoB = b.preco_venda || b.preco_aluguel || 0;
+        // Priorizar o preço principal de cada imóvel (venda ou aluguel)
+        const precoA = a.tipo_anuncio === 'venda' ? (a.preco_venda || 0) : (a.preco_aluguel || 0);
+        const precoB = b.tipo_anuncio === 'venda' ? (b.preco_venda || 0) : (b.preco_aluguel || 0);
         return precoB - precoA;
       });
       break;
     case 'preco-menor':
       resultado.sort((a, b) => {
-        const precoA = a.preco_venda || a.preco_aluguel || 0;
-        const precoB = b.preco_venda || b.preco_aluguel || 0;
+        // Priorizar o preço principal de cada imóvel (venda ou aluguel)
+        const precoA = a.tipo_anuncio === 'venda' ? (a.preco_venda || 0) : (a.preco_aluguel || 0);
+        const precoB = b.tipo_anuncio === 'venda' ? (b.preco_venda || 0) : (b.preco_aluguel || 0);
         return precoA - precoB;
       });
       break;
@@ -99,7 +120,7 @@ const logout = async () => {
     router.push('/');
   } catch (error) {
     console.error('Erro ao fazer logout:', error);
-    alert('Erro ao fazer logout. Por favor, tente novamente.');
+    showNotification('Erro ao fazer logout. Por favor, tente novamente.', 'error');
   }
 };
 
@@ -143,7 +164,7 @@ const carregarImoveis = async () => {
 
   } catch (error) {
     console.error('Erro ao carregar imóveis:', error);
-    alert('Erro ao carregar seus imóveis. Por favor, tente novamente.');
+    showNotification('Erro ao carregar seus imóveis. Por favor, tente novamente.', 'error');
   } finally {
     isLoading.value = false;
   }
@@ -193,10 +214,10 @@ const excluirImovel = async () => {
     
     showDeleteModal.value = false;
     imovelToDelete.value = null;
-    alert('Imóvel excluído com sucesso!');
+    showNotification('Imóvel excluído com sucesso!', 'success');
   } catch (error) {
     console.error('Erro ao excluir imóvel:', error);
-    alert('Erro ao excluir imóvel. Por favor, tente novamente.');
+    showNotification('Erro ao excluir imóvel. Por favor, tente novamente.', 'error');
   }
 };
 
@@ -215,10 +236,10 @@ const alterarStatus = async (imovel, novoStatus) => {
       imoveis.value[index].status = novoStatus;
     }
     
-    alert(`Status alterado para "${novoStatus}" com sucesso!`);
+    showNotification(`Status alterado para "${novoStatus}" com sucesso!`, 'success');
   } catch (error) {
     console.error('Erro ao alterar status:', error);
-    alert('Erro ao alterar status. Por favor, tente novamente.');
+    showNotification('Erro ao alterar status. Por favor, tente novamente.', 'error');
   }
 };
 
@@ -735,6 +756,21 @@ onMounted(() => {
             Excluir
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- Notificação Toast -->
+    <div v-if="notification.show" class="notification-toast" :class="notification.type">
+      <div class="notification-content">
+        <svg v-if="notification.type === 'success'" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>{{ notification.message }}</span>
       </div>
     </div>
   </div>
@@ -1526,6 +1562,50 @@ onMounted(() => {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+}
+
+/* Notificação Toast */
+.notification-toast {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  animation: slideIn 0.3s ease-out;
+  min-width: 300px;
+}
+
+.notification-toast.success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+}
+
+.notification-toast.error {
+  background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+  color: white;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notification-content svg {
+  flex-shrink: 0;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* Responsive */
