@@ -50,22 +50,23 @@ onMounted(() => {
       <nav class="nav-container">
         <div class="nav-brand">
           <router-link to="/" class="brand-link">
-            <span class="brand-text">{{ config.company.name }}</span>
+            <span class="brand-text">DUARTE.</span>
           </router-link>
         </div>
 
         <div class="nav-menu">
-          <router-link to="/" class="nav-link">Home</router-link>
-          <router-link to="/busca" class="nav-link">Buscar Imóveis</router-link>
+          <router-link to="/busca?tipo_anuncio=venda" class="nav-link">Comprar</router-link>
+          <router-link to="/busca?tipo_anuncio=aluguel" class="nav-link">Alugar</router-link>
+          <router-link to="/busca" class="nav-link">Vender</router-link>
+          <router-link to="/busca" class="nav-link">Corretores</router-link>
 
           <div v-if="isLoggedIn" class="nav-auth">
-            <span class="user-greeting">Olá, {{ user?.name || 'Usuário' }}</span>
-            <router-link to="/admin/dashboard" class="nav-link admin-link">Painel Admin</router-link>
+            <router-link to="/admin/dashboard" class="nav-link admin-link">Painel</router-link>
             <button @click="logout" class="logout-btn">Sair</button>
           </div>
 
           <div v-else class="nav-auth">
-            <router-link to="/admin/login" class="nav-link login-link">Admin</router-link>
+            <router-link to="/admin/login" class="nav-link login-link">Área Admin</router-link>
           </div>
         </div>
       </nav>
@@ -76,56 +77,83 @@ onMounted(() => {
       <router-view />
     </main>
 
-    <!-- Footer Aprimorado -->
+    <!-- Footer Estilo SERHANT -->
     <footer class="app-footer">
       <div class="footer-container">
         <div class="footer-content">
-          <div class="footer-brand">
-            <h3 class="footer-title">{{ config.company.name }}</h3>
-            <p class="footer-slogan">{{ config.company.slogan }}</p>
+          <div class="footer-section">
+            <h4 class="footer-heading">Navegação</h4>
+            <ul class="footer-list">
+              <li><router-link to="/busca?tipo_anuncio=venda" class="footer-link">Comprar</router-link></li>
+              <li><router-link to="/busca?tipo_anuncio=aluguel" class="footer-link">Alugar</router-link></li>
+              <li><router-link to="/busca" class="footer-link">Vender</router-link></li>
+              <li><router-link to="/busca" class="footer-link">Lançamentos</router-link></li>
+              <li><router-link to="/busca" class="footer-link">Corretores</router-link></li>
+              <li><a :href="`tel:${config.contact.phone}`" class="footer-link">Contato</a></li>
+            </ul>
           </div>
 
-          <div class="footer-links">
-            <div class="footer-section">
-              <h4 class="footer-heading">Navegação</h4>
-              <ul class="footer-list">
-                <li><router-link to="/" class="footer-link">Home</router-link></li>
-                <li><router-link to="/busca" class="footer-link">Buscar Imóveis</router-link></li>
-                <li v-if="isLoggedIn"><router-link to="/admin/dashboard" class="footer-link">Painel Admin</router-link></li>
-                <li v-else><router-link to="/admin/login" class="footer-link">Área do Corretor</router-link></li>
-              </ul>
-            </div>
+          <div class="footer-section">
+            <h4 class="footer-heading">Marketing & Alcance</h4>
+            <ul class="footer-list">
+              <li><a href="#" class="footer-link">Estúdios Duarte</a></li>
+              <li><a href="#" class="footer-link">Duarte ADX</a></li>
+              <li><a href="#" class="footer-link">Duarte ID Lab</a></li>
+            </ul>
+          </div>
 
-            <div class="footer-section">
-              <h4 class="footer-heading">Contato</h4>
-              <ul class="footer-list">
-                <li>
-                  <a :href="`tel:${config.contact.phone}`" class="footer-link contact-link">
-                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                    </svg>
-                    {{ config.contact.phoneFormatted }}
-                  </a>
-                </li>
-                <li>
-                  <a :href="`mailto:${config.contact.email}`" class="footer-link contact-link">
-                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                      <polyline points="22,6 12,13 2,6"/>
-                    </svg>
-                    {{ config.contact.email }}
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <div class="footer-section">
+            <h4 class="footer-heading">Empresa</h4>
+            <ul class="footer-list">
+              <li><a href="#" class="footer-link">Sobre</a></li>
+              <li><a href="#" class="footer-link">Escritórios</a></li>
+              <li><a href="#" class="footer-link">Carreiras</a></li>
+              <li><a href="#" class="footer-link">Imprensa</a></li>
+              <li v-if="isLoggedIn"><router-link to="/admin/dashboard" class="footer-link">Painel Admin</router-link></li>
+              <li v-else><router-link to="/admin/login" class="footer-link">Área do Corretor</router-link></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-heading">Insights</h4>
+            <ul class="footer-list">
+              <li><a href="#" class="footer-link">Conhecimento de Mercado</a></li>
+              <li><a href="#" class="footer-link">Notícias</a></li>
+              <li><a href="#" class="footer-link">Guias</a></li>
+              <li><a href="#" class="footer-link">Educação</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4 class="footer-heading">Contato</h4>
+            <ul class="footer-list">
+              <li>
+                <a :href="`tel:${config.contact.phone}`" class="footer-link contact-link">
+                  {{ config.contact.phoneFormatted }}
+                </a>
+              </li>
+              <li>
+                <a :href="`mailto:${config.contact.email}`" class="footer-link contact-link">
+                  {{ config.contact.email }}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
         <div class="footer-bottom">
           <div class="footer-divider"></div>
           <p class="copyright">
-            © {{ new Date().getFullYear() }} {{ config.company.name }}. Todos os direitos reservados.
+            © {{ new Date().getFullYear() }} Duarte Consultoria Imobiliária. Todos os direitos reservados.
           </p>
+          <p class="footer-disclaimer">
+            DUARTE., o logotipo DUARTE. e várias outras marcas comerciais, logotipos, designs e slogans são marcas registradas e não registradas da Duarte Consultoria Imobiliária. DUARTE. é uma corretora de imóveis licenciada.
+          </p>
+          <div class="footer-legal">
+            <a href="#" class="footer-legal-link">Termos de Uso</a>
+            <a href="#" class="footer-legal-link">Política de Privacidade</a>
+            <a href="#" class="footer-legal-link">Declaração de Habitação Justa</a>
+          </div>
         </div>
       </div>
     </footer>
@@ -154,15 +182,15 @@ onMounted(() => {
 }
 
 :root {
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
+  --primary-color: #000;
+  --secondary-color: #333;
   --success-color: #27ae60;
   --warning-color: #f39c12;
   --danger-color: #e74c3c;
-  --dark-color: #2c3e50;
-  --light-color: #f8f9fa;
-  --gray-color: #7f8c8d;
-  --border-color: #ecf0f1;
+  --dark-color: #000;
+  --light-color: #fff;
+  --gray-color: #666;
+  --border-color: #ddd;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
@@ -179,7 +207,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   color: var(--dark-color);
-  background: var(--light-color);
+  background: #fff;
 }
 
 #app {
@@ -191,73 +219,53 @@ body {
 /* Header */
 .app-header {
   background: white;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: 80px;
 }
 
 .nav-brand .brand-link {
   text-decoration: none;
   color: var(--dark-color);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .brand-text {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
   text-decoration: none;
   color: var(--dark-color);
   font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-md);
+  font-size: 1rem;
   transition: var(--transition-normal);
   position: relative;
+  padding: 0.5rem 0;
 }
 
-.nav-link:hover,
-.nav-link.router-link-active {
-  color: var(--primary-color);
-  background: rgba(102, 126, 234, 0.1);
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--primary-color);
-  transition: var(--transition-normal);
-  transform: translateX(-50%);
-}
-
-.nav-link:hover::after,
-.nav-link.router-link-active::after {
-  width: 100%;
+.nav-link:hover {
+  color: #666;
 }
 
 .nav-auth {
@@ -266,30 +274,37 @@ body {
   gap: 1rem;
 }
 
-.user-greeting {
-  color: var(--gray-color);
-  font-size: 0.9rem;
-}
-
 .admin-link {
   background: var(--primary-color);
   color: white !important;
   font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
 }
 
 .admin-link:hover {
   background: var(--secondary-color);
-  color: white !important;
+}
+
+.login-link {
+  border: 1px solid #000;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+}
+
+.login-link:hover {
+  background: #000;
+  color: #fff !important;
 }
 
 .logout-btn {
   background: transparent;
   border: 1px solid var(--danger-color);
   color: var(--danger-color);
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-md);
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
   transition: var(--transition-normal);
 }
@@ -307,52 +322,32 @@ body {
 
 /* Footer */
 .app-footer {
-  background: var(--dark-color);
+  background: #000;
   color: white;
-  margin-top: 4rem;
+  margin-top: 0;
+  padding: 4rem 0 2rem;
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 3rem 1rem 1rem;
+  padding: 0 2rem;
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 3rem;
-  margin-bottom: 2rem;
-}
-
-.footer-brand {
-  padding-right: 2rem;
-}
-
-.footer-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: white;
-}
-
-.footer-slogan {
-  color: var(--gray-color);
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.footer-links {
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 .footer-section h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .footer-list {
@@ -360,11 +355,11 @@ body {
 }
 
 .footer-list li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .footer-link {
-  color: var(--gray-color);
+  color: #999;
   text-decoration: none;
   font-size: 0.95rem;
   transition: var(--transition-normal);
@@ -374,34 +369,50 @@ body {
 }
 
 .footer-link:hover {
-  color: var(--primary-color);
+  color: white;
 }
 
 .contact-link {
   padding: 0.25rem 0;
 }
 
-.contact-icon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 1.5rem;
-}
-
-.footer-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-bottom: 1rem;
+  border-top: 1px solid #333;
+  padding-top: 2rem;
+  text-align: center;
 }
 
 .copyright {
-  text-align: center;
-  color: var(--gray-color);
+  color: #666;
   font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.footer-disclaimer {
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 1.5rem auto;
+  max-width: 900px;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.footer-legal-link {
+  color: #999;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition-normal);
+}
+
+.footer-legal-link:hover {
+  color: white;
 }
 
 /* WhatsApp Flutuante */
@@ -494,7 +505,7 @@ body {
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: var(--border-radius-md);
+  border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -504,24 +515,26 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: #000;
   color: white;
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: #333;
 }
 
 .btn-secondary {
-  background: var(--light-color);
-  color: var(--dark-color);
-  border: 1px solid var(--border-color);
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
 }
 
 .btn-secondary:hover {
-  background: #e9ecef;
+  background: #000;
+  color: #fff;
   transform: translateY(-1px);
 }
 
@@ -529,39 +542,25 @@ body {
 @media (max-width: 768px) {
   .nav-container {
     padding: 0 1rem;
-    height: 60px;
+    height: 70px;
   }
 
   .nav-menu {
     gap: 1rem;
+    font-size: 0.9rem;
   }
 
   .nav-link {
     padding: 0.5rem;
-    font-size: 0.9rem;
   }
 
   .nav-auth {
     gap: 0.5rem;
   }
 
-  .user-greeting {
-    display: none;
-  }
-
   .footer-content {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .footer-brand {
-    padding-right: 0;
-    text-align: center;
-  }
-
-  .footer-links {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 
   .whatsapp-float {
@@ -587,17 +586,18 @@ body {
     padding: 0.4rem 0.6rem;
   }
 
-  .logout-btn {
+  .logout-btn, .login-link, .admin-link {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
   }
 
   .footer-container {
-    padding: 2rem 1rem 1rem;
+    padding: 3rem 1rem 2rem;
   }
 
-  .footer-title {
-    font-size: 1.5rem;
+  .footer-legal {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 </style>

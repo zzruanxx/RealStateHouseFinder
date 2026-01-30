@@ -10,8 +10,8 @@ export const config = {
   
   // Informações da empresa
   company: {
-    name: 'Duarte Consultor Imobiliário',
-    slogan: 'Encontre o imóvel dos seus sonhos com facilidade e segurança'
+    name: 'Duarte Consultoria Imobiliária',
+    slogan: 'A Marca Imobiliária Mais Seguida e Inscrita do Brasil'
   },
 
   // Configurações de UI/UX
