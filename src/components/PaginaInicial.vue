@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { databases, storage, DB_ID, COLLECTION_IMOVEIS_ID, BUCKET_FOTOS_ID, Query } from '../appwrite';
+import { config } from '../config';
 
 const router = useRouter();
 
@@ -38,15 +39,31 @@ const searchRegion = (region) => {
 };
 
 const handleContactSubmit = () => {
-  // Open WhatsApp with pre-filled message
-  const message = `Olá! Meu nome é ${contactForm.value.name}.
-Email: ${contactForm.value.email}
-Telefone: ${contactForm.value.phone}
-Assunto: ${contactForm.value.topic}
-Mensagem: ${contactForm.value.message}`;
+  // Validate required fields
+  if (!contactForm.value.name || !contactForm.value.email || !contactForm.value.phone || !contactForm.value.message) {
+    alert('Por favor, preencha todos os campos obrigatórios.');
+    return;
+  }
+
+  // Basic email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(contactForm.value.email)) {
+    alert('Por favor, insira um email válido.');
+    return;
+  }
+
+  // Sanitize inputs to prevent XSS
+  const sanitize = (str) => str.replace(/[<>]/g, '');
+  
+  // Open WhatsApp with pre-filled message using config phone
+  const message = `Olá! Meu nome é ${sanitize(contactForm.value.name)}.
+Email: ${sanitize(contactForm.value.email)}
+Telefone: ${sanitize(contactForm.value.phone)}
+Assunto: ${sanitize(contactForm.value.topic)}
+Mensagem: ${sanitize(contactForm.value.message)}`;
   
   const encodedMessage = encodeURIComponent(message);
-  const whatsappUrl = `https://wa.me/5511999999999?text=${encodedMessage}`;
+  const whatsappUrl = `https://wa.me/${config.contact.phone}?text=${encodedMessage}`;
   window.open(whatsappUrl, '_blank');
   
   // Reset form
@@ -130,7 +147,7 @@ onMounted(() => {
           <input
             type="text"
             v-model="buscaHero.searchQuery"
-            placeholder="Pesquisar propriedades, localizações, corretores..."
+            placeholder="Pesquisar propriedades e localizações..."
             class="search-input-main"
           />
         </form>
@@ -144,24 +161,24 @@ onMounted(() => {
         <p class="section-subtitle">Descubra a casa que você está esperando.</p>
         
         <div class="regions-grid">
-          <div class="region-card" @click="searchRegion('São Paulo')">
+          <button class="region-card" @click="searchRegion('São Paulo')" type="button">
             <div class="region-name">São Paulo</div>
-          </div>
-          <div class="region-card" @click="searchRegion('Rio de Janeiro')">
+          </button>
+          <button class="region-card" @click="searchRegion('Rio de Janeiro')" type="button">
             <div class="region-name">Rio de Janeiro</div>
-          </div>
-          <div class="region-card" @click="searchRegion('Belo Horizonte')">
+          </button>
+          <button class="region-card" @click="searchRegion('Belo Horizonte')" type="button">
             <div class="region-name">Belo Horizonte</div>
-          </div>
-          <div class="region-card" @click="searchRegion('Curitiba')">
+          </button>
+          <button class="region-card" @click="searchRegion('Curitiba')" type="button">
             <div class="region-name">Curitiba</div>
-          </div>
-          <div class="region-card" @click="searchRegion('Porto Alegre')">
+          </button>
+          <button class="region-card" @click="searchRegion('Porto Alegre')" type="button">
             <div class="region-name">Porto Alegre</div>
-          </div>
-          <div class="region-card" @click="searchRegion('Brasília')">
+          </button>
+          <button class="region-card" @click="searchRegion('Brasília')" type="button">
             <div class="region-name">Brasília</div>
-          </div>
+          </button>
         </div>
       </div>
     </section>
@@ -304,15 +321,15 @@ onMounted(() => {
             <div class="stat-label">negócios por dia em média</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value">133</div>
-            <div class="stat-label">estados atendidos</div>
+            <div class="stat-value">27</div>
+            <div class="stat-label">estados brasileiros atendidos</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value">40K+</div>
+            <div class="stat-value">1K+</div>
             <div class="stat-label">corretores parceiros</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value">9M+</div>
+            <div class="stat-value">10K+</div>
             <div class="stat-label">seguidores nas redes</div>
           </div>
         </div>
