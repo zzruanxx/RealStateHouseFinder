@@ -64,20 +64,20 @@ const voltarHome = () => {
 .not-found-title {
   font-size: 6rem;
   font-weight: bold;
-  color: #3498db;
+  color: #000;
   margin: 0;
   line-height: 1;
 }
 
 .not-found-subtitle {
   font-size: 2rem;
-  color: #2c3e50;
+  color: #000;
   margin: 1rem 0;
 }
 
 .not-found-text {
   font-size: 1.1rem;
-  color: #7f8c8d;
+  color: #666;
   margin: 1.5rem 0 2rem;
 }
 

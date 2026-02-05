@@ -1,0 +1,463 @@
+<script setup>
+import { onMounted, ref } from 'vue';
+
+onMounted(() => {
+  window.scrollTo(0, 0);
+});
+
+const vagasAbertas = [
+  {
+    titulo: 'Corretor de Imóveis Sênior',
+    localizacao: 'São Paulo, SP',
+    tipo: 'Tempo Integral',
+    descricao: 'Procuramos corretor experiente com histórico comprovado de vendas e excelente relacionamento com clientes.',
+    requisitos: ['CRECI ativo', 'Mínimo 3 anos de experiência', 'Habilidades de negociação', 'Carteira de clientes']
+  },
+  {
+    titulo: 'Desenvolvedor Full Stack',
+    localizacao: 'Remoto',
+    tipo: 'Tempo Integral',
+    descricao: 'Desenvolvimento e manutenção de plataforma imobiliária digital com Vue.js, Node.js e Appwrite.',
+    requisitos: ['Vue.js 3', 'Node.js', 'API REST', 'Experiência com BaaS']
+  },
+  {
+    titulo: 'Gerente de Marketing Digital',
+    localizacao: 'Rio de Janeiro, RJ',
+    tipo: 'Tempo Integral',
+    descricao: 'Liderar estratégias de marketing digital para posicionamento da marca e geração de leads.',
+    requisitos: ['Experiência em marketing digital', 'Google Ads e Facebook Ads', 'SEO/SEM', 'Analytics']
+  },
+  {
+    titulo: 'Fotógrafo de Imóveis',
+    localizacao: 'Belo Horizonte, MG',
+    tipo: 'Freelancer',
+    descricao: 'Produção de fotos profissionais de imóveis para divulgação em nossos canais digitais.',
+    requisitos: ['Portfólio comprovado', 'Equipamento profissional', 'Edição de imagens', 'Drone (diferencial)']
+  }
+];
+
+const formData = ref({
+  nome: '',
+  email: '',
+  telefone: '',
+  vaga: '',
+  linkedin: '',
+  mensagem: ''
+});
+
+const handleSubmit = () => {
+  if (!formData.value.nome || !formData.value.email || !formData.value.telefone) {
+    alert('Por favor, preencha todos os campos obrigatórios.');
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(formData.value.email)) {
+    alert('Por favor, insira um email válido.');
+    return;
+  }
+
+  alert('Candidatura enviada com sucesso! Entraremos em contato em breve.');
+  
+  formData.value = {
+    nome: '',
+    email: '',
+    telefone: '',
+    vaga: '',
+    linkedin: '',
+    mensagem: ''
+  };
+};
+</script>
+
+<template>
+  <div class="page-container">
+    <div class="hero-banner">
+      <div class="hero-content">
+        <h1 class="hero-title">Carreiras na Duarte</h1>
+        <p class="hero-subtitle">Faça parte de um time que transforma o mercado imobiliário</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-container">
+        <div class="intro-block">
+          <h2 class="section-title">Por Que Trabalhar Conosco?</h2>
+          <p class="text-content">
+            Na Duarte Consultoria, você terá a oportunidade de trabalhar com os melhores profissionais do mercado, 
+            em um ambiente inovador e colaborativo. Oferecemos crescimento profissional, remuneração competitiva 
+            e benefícios diferenciados.
+          </p>
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">💰</div>
+            <h3 class="benefit-title">Remuneração Competitiva</h3>
+            <p class="benefit-text">Salário compatível com o mercado + comissões atrativas</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">📈</div>
+            <h3 class="benefit-title">Crescimento Profissional</h3>
+            <p class="benefit-text">Plano de carreira estruturado e oportunidades de desenvolvimento</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🏥</div>
+            <h3 class="benefit-title">Benefícios Completos</h3>
+            <p class="benefit-text">Plano de saúde, vale-refeição, vale-transporte e mais</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🎯</div>
+            <h3 class="benefit-title">Ambiente Inovador</h3>
+            <p class="benefit-text">Tecnologia de ponta e cultura de inovação constante</p>
+          </div>
+        </div>
+
+        <div class="jobs-section">
+          <h2 class="section-title">Vagas Abertas</h2>
+          <div class="jobs-grid">
+            <div v-for="(vaga, index) in vagasAbertas" :key="index" class="job-card">
+              <div class="job-header">
+                <h3 class="job-title">{{ vaga.titulo }}</h3>
+                <div class="job-meta">
+                  <span class="job-location">📍 {{ vaga.localizacao }}</span>
+                  <span class="job-type">⏰ {{ vaga.tipo }}</span>
+                </div>
+              </div>
+              
+              <p class="job-description">{{ vaga.descricao }}</p>
+              
+              <div class="job-requirements">
+                <strong>Requisitos:</strong>
+                <ul class="requirements-list">
+                  <li v-for="(req, idx) in vaga.requisitos" :key="idx">{{ req }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="application-section">
+          <h2 class="section-title">Candidate-se</h2>
+          <p class="text-content">
+            Preencha o formulário abaixo com suas informações e entraremos em contato.
+          </p>
+          
+          <form @submit.prevent="handleSubmit" class="application-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nome Completo *</label>
+                <input type="text" v-model="formData.nome" required />
+              </div>
+              <div class="form-group">
+                <label>E-mail *</label>
+                <input type="email" v-model="formData.email" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Telefone *</label>
+                <input type="tel" v-model="formData.telefone" required />
+              </div>
+              <div class="form-group">
+                <label>Vaga de Interesse</label>
+                <select v-model="formData.vaga">
+                  <option value="">Selecione uma vaga</option>
+                  <option v-for="(vaga, index) in vagasAbertas" :key="index" :value="vaga.titulo">
+                    {{ vaga.titulo }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>LinkedIn (opcional)</label>
+              <input type="url" v-model="formData.linkedin" placeholder="https://linkedin.com/in/seu-perfil" />
+            </div>
+
+            <div class="form-group">
+              <label>Mensagem / Por que você quer trabalhar conosco?</label>
+              <textarea v-model="formData.mensagem" rows="5"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit">
+              Enviar Candidatura
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.page-container {
+  background: white;
+}
+
+.hero-banner {
+  background: linear-gradient(135deg, #000 0%, #333 100%);
+  color: white;
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.content-section {
+  padding: 5rem 2rem;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro-block {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1.5rem;
+}
+
+.text-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.benefit-card {
+  background: #f9f9f9;
+  padding: 2.5rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.75rem;
+}
+
+.benefit-text {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.jobs-section {
+  margin-bottom: 5rem;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.job-card {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.job-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.job-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.75rem;
+}
+
+.job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.job-location,
+.job-type {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.job-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.job-requirements {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.job-requirements strong {
+  color: #000;
+  font-weight: 600;
+}
+
+.requirements-list {
+  margin-top: 0.75rem;
+  margin-left: 1.5rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+.application-section {
+  background: #f5f5f5;
+  padding: 4rem 2rem;
+  border-radius: 12px;
+}
+
+.application-section .section-title {
+  text-align: center;
+}
+
+.application-section .text-content {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.application-form {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #000;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.9rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.form-group textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.btn-submit {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 4rem 1.5rem 3rem;
+  }
+
+  .content-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .benefits-grid,
+  .jobs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .application-section {
+    padding: 3rem 1.5rem;
+  }
+}
+</style>
