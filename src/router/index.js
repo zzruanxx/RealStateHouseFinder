@@ -9,6 +9,13 @@ import AdminLogin from '../components/AdminLogin.vue';
 import AdminDashboard from '../components/AdminDashboard.vue';
 import CadastrarImovel from '../components/CadastrarImovel.vue';
 import EditarImovel from '../components/EditarImovel.vue';
+import PaginaSobre from '../components/PaginaSobre.vue';
+import PaginaEscritorios from '../components/PaginaEscritorios.vue';
+import PaginaCarreiras from '../components/PaginaCarreiras.vue';
+import PaginaCorretores from '../components/PaginaCorretores.vue';
+import PaginaTermos from '../components/PaginaTermos.vue';
+import PaginaPrivacidade from '../components/PaginaPrivacidade.vue';
+import PaginaHabitacaoJusta from '../components/PaginaHabitacaoJusta.vue';
 import NotFound from '../components/NotFound.vue';
 
 const routes = [
@@ -26,6 +33,41 @@ const routes = [
     path: '/imovel/:id',
     name: 'DetalheImovel',
     component: DetalheImovel
+  },
+  {
+    path: '/sobre',
+    name: 'Sobre',
+    component: PaginaSobre
+  },
+  {
+    path: '/escritorios',
+    name: 'Escritorios',
+    component: PaginaEscritorios
+  },
+  {
+    path: '/carreiras',
+    name: 'Carreiras',
+    component: PaginaCarreiras
+  },
+  {
+    path: '/corretores',
+    name: 'Corretores',
+    component: PaginaCorretores
+  },
+  {
+    path: '/termos',
+    name: 'Termos',
+    component: PaginaTermos
+  },
+  {
+    path: '/privacidade',
+    name: 'Privacidade',
+    component: PaginaPrivacidade
+  },
+  {
+    path: '/habitacao-justa',
+    name: 'HabitacaoJusta',
+    component: PaginaHabitacaoJusta
   },
   {
     path: '/admin/login',

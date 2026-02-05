@@ -57,8 +57,8 @@ onMounted(() => {
         <div class="nav-menu">
           <router-link to="/busca?tipo_anuncio=venda" class="nav-link">Comprar</router-link>
           <router-link to="/busca?tipo_anuncio=aluguel" class="nav-link">Alugar</router-link>
-          <router-link to="/busca" class="nav-link">Vender</router-link>
-          <router-link to="/busca" class="nav-link">Corretores</router-link>
+          <router-link to="/admin/cadastrar" class="nav-link">Vender</router-link>
+          <router-link to="/corretores" class="nav-link">Corretores</router-link>
 
           <div v-if="isLoggedIn" class="nav-auth">
             <router-link to="/admin/dashboard" class="nav-link admin-link">Painel</router-link>
@@ -86,9 +86,9 @@ onMounted(() => {
             <ul class="footer-list">
               <li><router-link to="/busca?tipo_anuncio=venda" class="footer-link">Comprar</router-link></li>
               <li><router-link to="/busca?tipo_anuncio=aluguel" class="footer-link">Alugar</router-link></li>
-              <li><router-link to="/busca" class="footer-link">Vender</router-link></li>
+              <li><router-link to="/admin/cadastrar" class="footer-link">Vender</router-link></li>
               <li><router-link to="/busca" class="footer-link">Lançamentos</router-link></li>
-              <li><router-link to="/busca" class="footer-link">Corretores</router-link></li>
+              <li><router-link to="/corretores" class="footer-link">Corretores</router-link></li>
               <li><a :href="`tel:${config.contact.phone}`" class="footer-link">Contato</a></li>
             </ul>
           </div>
@@ -96,19 +96,19 @@ onMounted(() => {
           <div class="footer-section">
             <h4 class="footer-heading">Marketing & Alcance</h4>
             <ul class="footer-list">
-              <li><a href="#" class="footer-link">Estúdios Duarte</a></li>
-              <li><a href="#" class="footer-link">Duarte ADX</a></li>
-              <li><a href="#" class="footer-link">Duarte ID Lab</a></li>
+              <li><router-link to="/sobre" class="footer-link">Estúdios Duarte</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Duarte ADX</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Duarte ID Lab</router-link></li>
             </ul>
           </div>
 
           <div class="footer-section">
             <h4 class="footer-heading">Empresa</h4>
             <ul class="footer-list">
-              <li><a href="#" class="footer-link">Sobre</a></li>
-              <li><a href="#" class="footer-link">Escritórios</a></li>
-              <li><a href="#" class="footer-link">Carreiras</a></li>
-              <li><a href="#" class="footer-link">Imprensa</a></li>
+              <li><router-link to="/sobre" class="footer-link">Sobre</router-link></li>
+              <li><router-link to="/escritorios" class="footer-link">Escritórios</router-link></li>
+              <li><router-link to="/carreiras" class="footer-link">Carreiras</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Imprensa</router-link></li>
               <li v-if="isLoggedIn"><router-link to="/admin/dashboard" class="footer-link">Painel Admin</router-link></li>
               <li v-else><router-link to="/admin/login" class="footer-link">Área do Corretor</router-link></li>
             </ul>
@@ -117,10 +117,10 @@ onMounted(() => {
           <div class="footer-section">
             <h4 class="footer-heading">Insights</h4>
             <ul class="footer-list">
-              <li><a href="#" class="footer-link">Conhecimento de Mercado</a></li>
-              <li><a href="#" class="footer-link">Notícias</a></li>
-              <li><a href="#" class="footer-link">Guias</a></li>
-              <li><a href="#" class="footer-link">Educação</a></li>
+              <li><router-link to="/sobre" class="footer-link">Conhecimento de Mercado</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Notícias</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Guias</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Educação</router-link></li>
             </ul>
           </div>
 
@@ -150,9 +150,9 @@ onMounted(() => {
             DUARTE., o logotipo DUARTE. e várias outras marcas comerciais, logotipos, designs e slogans são marcas registradas e não registradas da Duarte Consultoria Imobiliária. DUARTE. é uma corretora de imóveis licenciada.
           </p>
           <div class="footer-legal">
-            <a href="#" class="footer-legal-link">Termos de Uso</a>
-            <a href="#" class="footer-legal-link">Política de Privacidade</a>
-            <a href="#" class="footer-legal-link">Declaração de Habitação Justa</a>
+            <router-link to="/termos" class="footer-legal-link">Termos de Uso</router-link>
+            <router-link to="/privacidade" class="footer-legal-link">Política de Privacidade</router-link>
+            <router-link to="/habitacao-justa" class="footer-legal-link">Declaração de Habitação Justa</router-link>
           </div>
         </div>
       </div>
