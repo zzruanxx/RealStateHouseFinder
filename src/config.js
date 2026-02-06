@@ -4,14 +4,14 @@ export const config = {
   contact: {
     phone: '5511999999999', // Formato: código do país + DDD + número (sem espaços ou símbolos)
     phoneFormatted: '(11) 99999-9999', // Formato para exibição
-    email: 'contato@duarteimoveis.com.br',
+    email: 'contato@ruanbatista.com.br',
     whatsappMessage: 'Olá! Gostaria de mais informações sobre imóveis disponíveis.'
   },
   
   // Informações da empresa
   company: {
-    name: 'Duarte Consultoria Imobiliária',
-    slogan: 'A Marca Imobiliária Mais Seguida e Inscrita do Brasil'
+    name: 'Ruan Batista Consultor Imobiliário',
+    slogan: 'Especialista na Região dos Lagos e Capital do Rio de Janeiro'
   },
 
   // Configurações de UI/UX
@@ -25,8 +25,8 @@ export const config = {
 
   // Configurações de SEO
   seo: {
-    title: 'Duarte Consultor Imobiliário - Encontre seu Imóvel Ideal',
-    description: 'Portal imobiliário completo para encontrar apartamentos, casas e terrenos. Busca avançada, fotos de qualidade e contato direto com corretores.',
-    keywords: 'imóveis, apartamentos, casas, terrenos, aluguel, venda, São Paulo, imobiliária'
+    title: 'Ruan Batista Consultor Imobiliário - CRECI 94102 - Região dos Lagos e Capital RJ',
+    description: 'Consultoria imobiliária especializada em Araruama, Búzios, Cabo Frio, São Pedro da Aldeia, Rio das Ostras, Barra da Tijuca e Zona Sul. Compra, venda e locação de imóveis.',
+    keywords: 'imóveis, apartamentos, casas, terrenos, aluguel, venda, Região dos Lagos, Araruama, Búzios, Cabo Frio, São Pedro da Aldeia, Rio das Ostras, Barra, Zona Sul, imobiliária'
   }
 };

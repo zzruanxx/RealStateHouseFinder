@@ -147,9 +147,9 @@ onMounted(() => {
               Para exercer seus direitos ou esclarecer dúvidas sobre esta Política de Privacidade, entre em contato:
             </p>
             <ul class="contact-list">
-              <li><strong>E-mail de Privacidade:</strong> privacidade@duarte.com.br</li>
-              <li><strong>Telefone:</strong> (11) 1234-5678</li>
-              <li><strong>Endereço:</strong> Rua Augusta, 2500 - Jardins, São Paulo, SP</li>
+              <li><strong>E-mail de Privacidade:</strong> privacidade@ruanbatista.com.br</li>
+              <li><strong>Telefone:</strong> (22) 99999-9999</li>
+              <li><strong>Endereço:</strong> Araruama, RJ - Região dos Lagos</li>
             </ul>
           </section>
 

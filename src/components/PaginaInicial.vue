@@ -161,23 +161,23 @@ onMounted(() => {
         <p class="section-subtitle">Descubra a casa que você está esperando.</p>
         
         <div class="regions-grid">
-          <button class="region-card" @click="searchRegion('São Paulo')" type="button">
-            <div class="region-name">São Paulo</div>
+          <button class="region-card" @click="searchRegion('Araruama')" type="button">
+            <div class="region-name">Araruama</div>
           </button>
-          <button class="region-card" @click="searchRegion('Rio de Janeiro')" type="button">
-            <div class="region-name">Rio de Janeiro</div>
+          <button class="region-card" @click="searchRegion('Búzios')" type="button">
+            <div class="region-name">Búzios</div>
           </button>
-          <button class="region-card" @click="searchRegion('Belo Horizonte')" type="button">
-            <div class="region-name">Belo Horizonte</div>
+          <button class="region-card" @click="searchRegion('Cabo Frio')" type="button">
+            <div class="region-name">Cabo Frio</div>
           </button>
-          <button class="region-card" @click="searchRegion('Curitiba')" type="button">
-            <div class="region-name">Curitiba</div>
+          <button class="region-card" @click="searchRegion('São Pedro da Aldeia')" type="button">
+            <div class="region-name">São Pedro da Aldeia</div>
           </button>
-          <button class="region-card" @click="searchRegion('Porto Alegre')" type="button">
-            <div class="region-name">Porto Alegre</div>
+          <button class="region-card" @click="searchRegion('Rio das Ostras')" type="button">
+            <div class="region-name">Rio das Ostras</div>
           </button>
-          <button class="region-card" @click="searchRegion('Brasília')" type="button">
-            <div class="region-name">Brasília</div>
+          <button class="region-card" @click="searchRegion('Barra da Tijuca')" type="button">
+            <div class="region-name">Barra da Tijuca</div>
           </button>
         </div>
       </div>

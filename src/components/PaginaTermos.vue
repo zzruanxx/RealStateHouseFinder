@@ -122,9 +122,9 @@ onMounted(() => {
               Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco:
             </p>
             <ul class="contact-list">
-              <li><strong>E-mail:</strong> contato@duarte.com.br</li>
-              <li><strong>Telefone:</strong> (11) 1234-5678</li>
-              <li><strong>Endereço:</strong> Rua Augusta, 2500 - Jardins, São Paulo, SP</li>
+              <li><strong>E-mail:</strong> contato@ruanbatista.com.br</li>
+              <li><strong>Telefone:</strong> (22) 99999-9999</li>
+              <li><strong>Endereço:</strong> Araruama, RJ - Região dos Lagos</li>
             </ul>
           </section>
 
