@@ -50,7 +50,7 @@ onMounted(() => {
       <nav class="nav-container">
         <div class="nav-brand">
           <router-link to="/" class="brand-link">
-            <span class="brand-text">DUARTE.</span>
+            <span class="brand-text">Ruan Batista</span>
           </router-link>
         </div>
 
@@ -58,7 +58,7 @@ onMounted(() => {
           <router-link to="/busca?tipo_anuncio=venda" class="nav-link">Comprar</router-link>
           <router-link to="/busca?tipo_anuncio=aluguel" class="nav-link">Alugar</router-link>
           <router-link to="/admin/cadastrar" class="nav-link">Vender</router-link>
-          <router-link to="/corretores" class="nav-link">Corretores</router-link>
+          <router-link to="/sobre-mim" class="nav-link">Sobre Mim</router-link>
 
           <div v-if="isLoggedIn" class="nav-auth">
             <router-link to="/admin/dashboard" class="nav-link admin-link">Painel</router-link>
@@ -88,39 +88,38 @@ onMounted(() => {
               <li><router-link to="/busca?tipo_anuncio=aluguel" class="footer-link">Alugar</router-link></li>
               <li><router-link to="/admin/cadastrar" class="footer-link">Vender</router-link></li>
               <li><router-link to="/busca" class="footer-link">Lançamentos</router-link></li>
-              <li><router-link to="/corretores" class="footer-link">Corretores</router-link></li>
+              <li><router-link to="/sobre-mim" class="footer-link">Sobre Mim</router-link></li>
               <li><a :href="`tel:${config.contact.phone}`" class="footer-link">Contato</a></li>
             </ul>
           </div>
 
           <div class="footer-section">
-            <h4 class="footer-heading">Marketing & Alcance</h4>
+            <h4 class="footer-heading">Serviços</h4>
             <ul class="footer-list">
-              <li><router-link to="/sobre" class="footer-link">Estúdios Duarte</router-link></li>
-              <li><router-link to="/sobre" class="footer-link">Duarte ADX</router-link></li>
-              <li><router-link to="/sobre" class="footer-link">Duarte ID Lab</router-link></li>
+              <li><router-link to="/sobre-mim" class="footer-link">Consultoria</router-link></li>
+              <li><router-link to="/sobre-mim" class="footer-link">Avaliação de Imóveis</router-link></li>
+              <li><router-link to="/sobre-mim" class="footer-link">Assessoria</router-link></li>
             </ul>
           </div>
 
           <div class="footer-section">
-            <h4 class="footer-heading">Empresa</h4>
+            <h4 class="footer-heading">Informações</h4>
             <ul class="footer-list">
-              <li><router-link to="/sobre" class="footer-link">Sobre</router-link></li>
-              <li><router-link to="/escritorios" class="footer-link">Escritórios</router-link></li>
+              <li><router-link to="/sobre-mim" class="footer-link">Sobre Mim</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Empresa</router-link></li>
               <li><router-link to="/carreiras" class="footer-link">Carreiras</router-link></li>
-              <li><router-link to="/sobre" class="footer-link">Imprensa</router-link></li>
               <li v-if="isLoggedIn"><router-link to="/admin/dashboard" class="footer-link">Painel Admin</router-link></li>
               <li v-else><router-link to="/admin/login" class="footer-link">Área do Corretor</router-link></li>
             </ul>
           </div>
 
           <div class="footer-section">
-            <h4 class="footer-heading">Insights</h4>
+            <h4 class="footer-heading">Recursos</h4>
             <ul class="footer-list">
-              <li><router-link to="/sobre" class="footer-link">Conhecimento de Mercado</router-link></li>
-              <li><router-link to="/sobre" class="footer-link">Notícias</router-link></li>
-              <li><router-link to="/sobre" class="footer-link">Guias</router-link></li>
-              <li><router-link to="/sobre" class="footer-link">Educação</router-link></li>
+              <li><router-link to="/busca" class="footer-link">Buscar Imóveis</router-link></li>
+              <li><router-link to="/sobre-mim" class="footer-link">Áreas de Atuação</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Blog</router-link></li>
+              <li><router-link to="/sobre" class="footer-link">Dicas</router-link></li>
             </ul>
           </div>
 
@@ -144,10 +143,10 @@ onMounted(() => {
         <div class="footer-bottom">
           <div class="footer-divider"></div>
           <p class="copyright">
-            © {{ new Date().getFullYear() }} Duarte Consultoria Imobiliária. Todos os direitos reservados.
+            © {{ new Date().getFullYear() }} Ruan Batista Consultor Imobiliário. Todos os direitos reservados.
           </p>
           <p class="footer-disclaimer">
-            DUARTE., o logotipo DUARTE. e várias outras marcas comerciais, logotipos, designs e slogans são marcas registradas e não registradas da Duarte Consultoria Imobiliária. DUARTE. é uma corretora de imóveis licenciada.
+            RUAN BATISTA, o logotipo e várias outras marcas comerciais, logotipos, designs e slogans são marcas da Ruan Batista Consultor Imobiliário - CRECI 94102.
           </p>
           <div class="footer-legal">
             <router-link to="/termos" class="footer-legal-link">Termos de Uso</router-link>

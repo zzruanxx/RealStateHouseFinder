@@ -12,7 +12,7 @@ import EditarImovel from '../components/EditarImovel.vue';
 import PaginaSobre from '../components/PaginaSobre.vue';
 import PaginaEscritorios from '../components/PaginaEscritorios.vue';
 import PaginaCarreiras from '../components/PaginaCarreiras.vue';
-import PaginaCorretores from '../components/PaginaCorretores.vue';
+import PaginaSobreMim from '../components/PaginaSobreMim.vue';
 import PaginaTermos from '../components/PaginaTermos.vue';
 import PaginaPrivacidade from '../components/PaginaPrivacidade.vue';
 import PaginaHabitacaoJusta from '../components/PaginaHabitacaoJusta.vue';
@@ -50,9 +50,13 @@ const routes = [
     component: PaginaCarreiras
   },
   {
+    path: '/sobre-mim',
+    name: 'SobreMim',
+    component: PaginaSobreMim
+  },
+  {
     path: '/corretores',
-    name: 'Corretores',
-    component: PaginaCorretores
+    redirect: '/sobre-mim'
   },
   {
     path: '/termos',

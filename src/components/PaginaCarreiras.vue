@@ -7,32 +7,25 @@ onMounted(() => {
 
 const vagasAbertas = [
   {
-    titulo: 'Corretor de Imóveis Sênior',
-    localizacao: 'São Paulo, SP',
-    tipo: 'Tempo Integral',
-    descricao: 'Procuramos corretor experiente com histórico comprovado de vendas e excelente relacionamento com clientes.',
-    requisitos: ['CRECI ativo', 'Mínimo 3 anos de experiência', 'Habilidades de negociação', 'Carteira de clientes']
+    titulo: 'Corretor de Imóveis',
+    localizacao: 'Região dos Lagos, RJ',
+    tipo: 'Parceria',
+    descricao: 'Buscamos corretores para atuar na Região dos Lagos com foco em Araruama, Búzios, Cabo Frio, São Pedro da Aldeia e Rio das Ostras.',
+    requisitos: ['CRECI ativo', 'Conhecimento da região', 'Habilidades de negociação', 'Proatividade']
   },
   {
-    titulo: 'Desenvolvedor Full Stack',
-    localizacao: 'Remoto',
-    tipo: 'Tempo Integral',
-    descricao: 'Desenvolvimento e manutenção de plataforma imobiliária digital com Vue.js, Node.js e Appwrite.',
-    requisitos: ['Vue.js 3', 'Node.js', 'API REST', 'Experiência com BaaS']
+    titulo: 'Corretor de Imóveis',
+    localizacao: 'Barra da Tijuca e Zona Sul, RJ',
+    tipo: 'Parceria',
+    descricao: 'Oportunidade para corretores que desejam atuar na Barra da Tijuca e Zona Sul (Copacabana, Ipanema, Leblon).',
+    requisitos: ['CRECI ativo', 'Experiência no mercado carioca', 'Relacionamento com clientes', 'Flexibilidade de horários']
   },
   {
-    titulo: 'Gerente de Marketing Digital',
-    localizacao: 'Rio de Janeiro, RJ',
+    titulo: 'Assistente Comercial',
+    localizacao: 'Araruama, RJ',
     tipo: 'Tempo Integral',
-    descricao: 'Liderar estratégias de marketing digital para posicionamento da marca e geração de leads.',
-    requisitos: ['Experiência em marketing digital', 'Google Ads e Facebook Ads', 'SEO/SEM', 'Analytics']
-  },
-  {
-    titulo: 'Fotógrafo de Imóveis',
-    localizacao: 'Belo Horizonte, MG',
-    tipo: 'Freelancer',
-    descricao: 'Produção de fotos profissionais de imóveis para divulgação em nossos canais digitais.',
-    requisitos: ['Portfólio comprovado', 'Equipamento profissional', 'Edição de imagens', 'Drone (diferencial)']
+    descricao: 'Auxílio nas atividades comerciais, atendimento a clientes e suporte administrativo.',
+    requisitos: ['Ensino médio completo', 'Boa comunicação', 'Organização', 'Conhecimento em informática']
   }
 ];
 
@@ -74,8 +67,8 @@ const handleSubmit = () => {
   <div class="page-container">
     <div class="hero-banner">
       <div class="hero-content">
-        <h1 class="hero-title">Carreiras na Duarte</h1>
-        <p class="hero-subtitle">Faça parte de um time que transforma o mercado imobiliário</p>
+        <h1 class="hero-title">Trabalhe Conosco</h1>
+        <p class="hero-subtitle">Junte-se à equipe Ruan Batista Consultor Imobiliário</p>
       </div>
     </div>
 
@@ -84,32 +77,32 @@ const handleSubmit = () => {
         <div class="intro-block">
           <h2 class="section-title">Por Que Trabalhar Conosco?</h2>
           <p class="text-content">
-            Na Duarte Consultoria, você terá a oportunidade de trabalhar com os melhores profissionais do mercado, 
-            em um ambiente inovador e colaborativo. Oferecemos crescimento profissional, remuneração competitiva 
-            e benefícios diferenciados.
+            Com Ruan Batista Consultor Imobiliário, você terá a oportunidade de crescer no mercado imobiliário 
+            da Região dos Lagos e Capital do RJ, trabalhando em parceria com um profissional experiente. 
+            Oferecemos suporte completo e comissões justas para corretores parceiros.
           </p>
         </div>
 
         <div class="benefits-grid">
           <div class="benefit-card">
             <div class="benefit-icon">💰</div>
-            <h3 class="benefit-title">Remuneração Competitiva</h3>
-            <p class="benefit-text">Salário compatível com o mercado + comissões atrativas</p>
+            <h3 class="benefit-title">Comissões Justas</h3>
+            <p class="benefit-text">Sistema de comissionamento transparente e competitivo</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">📈</div>
-            <h3 class="benefit-title">Crescimento Profissional</h3>
-            <p class="benefit-text">Plano de carreira estruturado e oportunidades de desenvolvimento</p>
+            <h3 class="benefit-title">Crescimento na Carreira</h3>
+            <p class="benefit-text">Oportunidades de desenvolvimento no mercado imobiliário</p>
           </div>
           <div class="benefit-card">
-            <div class="benefit-icon">🏥</div>
-            <h3 class="benefit-title">Benefícios Completos</h3>
-            <p class="benefit-text">Plano de saúde, vale-refeição, vale-transporte e mais</p>
+            <div class="benefit-icon">🤝</div>
+            <h3 class="benefit-title">Parceria Sólida</h3>
+            <p class="benefit-text">Suporte e orientação constante para atingir suas metas</p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">🎯</div>
-            <h3 class="benefit-title">Ambiente Inovador</h3>
-            <p class="benefit-text">Tecnologia de ponta e cultura de inovação constante</p>
+            <h3 class="benefit-title">Mercado Aquecido</h3>
+            <p class="benefit-text">Atuação em regiões valorizadas e de alta demanda</p>
           </div>
         </div>
 

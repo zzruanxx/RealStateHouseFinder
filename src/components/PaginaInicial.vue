@@ -161,23 +161,23 @@ onMounted(() => {
         <p class="section-subtitle">Descubra a casa que você está esperando.</p>
         
         <div class="regions-grid">
-          <button class="region-card" @click="searchRegion('São Paulo')" type="button">
-            <div class="region-name">São Paulo</div>
+          <button class="region-card" @click="searchRegion('Araruama')" type="button">
+            <div class="region-name">Araruama</div>
           </button>
-          <button class="region-card" @click="searchRegion('Rio de Janeiro')" type="button">
-            <div class="region-name">Rio de Janeiro</div>
+          <button class="region-card" @click="searchRegion('Búzios')" type="button">
+            <div class="region-name">Búzios</div>
           </button>
-          <button class="region-card" @click="searchRegion('Belo Horizonte')" type="button">
-            <div class="region-name">Belo Horizonte</div>
+          <button class="region-card" @click="searchRegion('Cabo Frio')" type="button">
+            <div class="region-name">Cabo Frio</div>
           </button>
-          <button class="region-card" @click="searchRegion('Curitiba')" type="button">
-            <div class="region-name">Curitiba</div>
+          <button class="region-card" @click="searchRegion('São Pedro da Aldeia')" type="button">
+            <div class="region-name">São Pedro da Aldeia</div>
           </button>
-          <button class="region-card" @click="searchRegion('Porto Alegre')" type="button">
-            <div class="region-name">Porto Alegre</div>
+          <button class="region-card" @click="searchRegion('Rio das Ostras')" type="button">
+            <div class="region-name">Rio das Ostras</div>
           </button>
-          <button class="region-card" @click="searchRegion('Brasília')" type="button">
-            <div class="region-name">Brasília</div>
+          <button class="region-card" @click="searchRegion('Barra da Tijuca')" type="button">
+            <div class="region-name">Barra da Tijuca</div>
           </button>
         </div>
       </div>
@@ -293,44 +293,44 @@ onMounted(() => {
     <!-- Why Choose Us Section -->
     <section class="why-section">
       <div class="section-container">
-        <h2 class="section-title-dark">Por que Duarte Consultoria Imobiliária</h2>
+        <h2 class="section-title-dark">Por que Ruan Batista Consultor Imobiliário</h2>
         
         <div class="why-grid">
           <div class="why-card">
-            <h3>Estúdios Duarte</h3>
-            <p class="why-subtitle">Luzes, Câmera, Imóveis.</p>
-            <p>Somos um estúdio de produção interno de serviço completo que cria conteúdo especializado e único, projetado estrategicamente para ressoar com o maior público imobiliário do Brasil.</p>
+            <h3>Conhecimento Local</h3>
+            <p class="why-subtitle">Especialista da Região.</p>
+            <p>Conhecimento profundo do mercado imobiliário da Região dos Lagos e Capital, com expertise em Araruama, Búzios, Cabo Frio, São Pedro da Aldeia, Rio das Ostras, Barra e Zona Sul.</p>
           </div>
 
           <div class="why-card">
-            <h3>Soluções Tecnológicas Para Todos</h3>
-            <p class="why-subtitle">Tecnologia de Ponta.</p>
-            <p>Ajudamos corretores a economizar tempo e focar em seus clientes com ferramentas e tecnologia de última geração.</p>
+            <h3>Atendimento Personalizado</h3>
+            <p class="why-subtitle">Consultoria Individualizada.</p>
+            <p>Cada cliente recebe atendimento dedicado e personalizado, com foco em entender necessidades específicas e encontrar o imóvel ideal.</p>
           </div>
 
           <div class="why-card">
-            <h3>Liberando Potencial</h3>
-            <p class="why-subtitle">Com Ideias Ousadas.</p>
-            <p>Inovação constante e ideias revolucionárias que transformam o mercado imobiliário.</p>
+            <h3>Transparência e Confiança</h3>
+            <p class="why-subtitle">CRECI 94102.</p>
+            <p>Profissionalismo e ética em todas as negociações, com total transparência e compromisso com seus objetivos imobiliários.</p>
           </div>
         </div>
 
         <div class="stats-section">
           <div class="stat-box">
-            <div class="stat-value">37</div>
-            <div class="stat-label">negócios por dia em média</div>
+            <div class="stat-value">CRECI</div>
+            <div class="stat-label">94102</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value">27</div>
-            <div class="stat-label">estados brasileiros atendidos</div>
+            <div class="stat-value">7+</div>
+            <div class="stat-label">cidades atendidas</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value">1K+</div>
-            <div class="stat-label">corretores parceiros</div>
+            <div class="stat-value">2</div>
+            <div class="stat-label">regiões de atuação</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value">10K+</div>
-            <div class="stat-label">seguidores nas redes</div>
+            <div class="stat-value">100%</div>
+            <div class="stat-label">dedicação aos clientes</div>
           </div>
         </div>
       </div>

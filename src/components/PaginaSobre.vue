@@ -10,8 +10,8 @@ onMounted(() => {
   <div class="page-container">
     <div class="hero-banner">
       <div class="hero-content">
-        <h1 class="hero-title">Sobre a Duarte Consultoria</h1>
-        <p class="hero-subtitle">Excelência e Inovação em Consultoria Imobiliária</p>
+        <h1 class="hero-title">Sobre Ruan Batista</h1>
+        <p class="hero-subtitle">Excelência em Consultoria Imobiliária na Região dos Lagos e Capital</p>
       </div>
     </div>
 
@@ -20,13 +20,14 @@ onMounted(() => {
         <div class="content-block">
           <h2 class="section-title">Nossa História</h2>
           <p class="text-content">
-            A Duarte Consultoria Imobiliária nasceu com o propósito de revolucionar o mercado imobiliário brasileiro, 
-            trazendo inovação, transparência e excelência em cada negócio. Desde o início, nossa missão tem sido 
-            conectar pessoas aos seus sonhos, seja na compra, venda ou aluguel de imóveis.
+            Ruan Batista Consultor Imobiliário atua com dedicação no mercado imobiliário da Região dos Lagos 
+            e na capital do Rio de Janeiro, oferecendo consultoria especializada para compra, venda e locação 
+            de imóveis em Araruama, Búzios, Cabo Frio, São Pedro da Aldeia, Rio das Ostras e demais municípios 
+            da região, além de atender clientes na Barra da Tijuca e Zona Sul carioca.
           </p>
           <p class="text-content">
-            Com uma equipe altamente qualificada e tecnologia de ponta, nos tornamos referência no setor, 
-            atendendo clientes em todo o Brasil com profissionalismo e dedicação incomparáveis.
+            Com CRECI 94102, oferecemos atendimento personalizado e conhecimento profundo do mercado local, 
+            conectando pessoas aos imóveis ideais com transparência, profissionalismo e dedicação.
           </p>
         </div>
 
@@ -65,7 +66,7 @@ onMounted(() => {
         </div>
 
         <div class="content-block">
-          <h2 class="section-title">Por Que Escolher a Duarte?</h2>
+          <h2 class="section-title">Por Que Escolher Ruan Batista?</h2>
           <div class="features-list">
             <div class="feature-item">
               <div class="feature-number">01</div>

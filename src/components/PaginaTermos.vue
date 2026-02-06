@@ -21,7 +21,7 @@ onMounted(() => {
           <section class="legal-section">
             <h2>1. Aceitação dos Termos</h2>
             <p>
-              Ao acessar e usar o portal da Duarte Consultoria Imobiliária, você concorda em cumprir e estar vinculado 
+              Ao acessar e usar o portal da Ruan Batista Consultor Imobiliário, você concorda em cumprir e estar vinculado 
               aos seguintes termos e condições de uso. Se você não concordar com qualquer parte destes termos, 
               não utilize nosso serviço.
             </p>
@@ -47,7 +47,7 @@ onMounted(() => {
             <h2>3. Propriedade Intelectual</h2>
             <p>
               Todo o conteúdo presente neste portal, incluindo textos, gráficos, logotipos, imagens, áudio, vídeo e 
-              software, é propriedade da Duarte Consultoria Imobiliária ou de seus fornecedores de conteúdo e está 
+              software, é propriedade da Ruan Batista Consultor Imobiliário ou de seus fornecedores de conteúdo e está 
               protegido pelas leis de direitos autorais brasileiras e internacionais.
             </p>
           </section>
@@ -77,7 +77,7 @@ onMounted(() => {
           <section class="legal-section">
             <h2>6. Limitação de Responsabilidade</h2>
             <p>
-              A Duarte Consultoria Imobiliária não será responsável por quaisquer danos diretos, indiretos, incidentais, 
+              A Ruan Batista Consultor Imobiliário não será responsável por quaisquer danos diretos, indiretos, incidentais, 
               especiais, consequenciais ou punitivos resultantes do uso ou incapacidade de usar o serviço, incluindo, 
               mas não se limitando a:
             </p>
@@ -122,9 +122,9 @@ onMounted(() => {
               Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco:
             </p>
             <ul class="contact-list">
-              <li><strong>E-mail:</strong> contato@duarte.com.br</li>
-              <li><strong>Telefone:</strong> (11) 1234-5678</li>
-              <li><strong>Endereço:</strong> Rua Augusta, 2500 - Jardins, São Paulo, SP</li>
+              <li><strong>E-mail:</strong> contato@ruanbatista.com.br</li>
+              <li><strong>Telefone:</strong> (22) 99999-9999</li>
+              <li><strong>Endereço:</strong> Araruama, RJ - Região dos Lagos</li>
             </ul>
           </section>
 
