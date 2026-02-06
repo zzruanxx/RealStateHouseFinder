@@ -7,52 +7,60 @@ onMounted(() => {
 
 const escritorios = [
   {
-    nome: 'São Paulo - Jardins',
-    endereco: 'Rua Augusta, 2500 - Jardins',
-    cidade: 'São Paulo, SP',
-    telefone: '(11) 3456-7890',
-    email: 'sp.jardins@duarte.com.br',
+    nome: 'Araruama - Sede',
+    endereco: 'Centro',
+    cidade: 'Araruama, RJ',
+    telefone: '(22) 99999-9999',
+    email: 'contato@ruanbatista.com.br',
     horario: 'Seg-Sex: 9h-18h | Sáb: 9h-13h'
   },
   {
-    nome: 'Rio de Janeiro - Copacabana',
-    endereco: 'Av. Atlântica, 1500 - Copacabana',
+    nome: 'Búzios',
+    endereco: 'Centro',
+    cidade: 'Armação dos Búzios, RJ',
+    telefone: '(22) 99999-9999',
+    email: 'contato@ruanbatista.com.br',
+    horario: 'Atendimento por agendamento'
+  },
+  {
+    nome: 'Cabo Frio',
+    endereco: 'Centro',
+    cidade: 'Cabo Frio, RJ',
+    telefone: '(22) 99999-9999',
+    email: 'contato@ruanbatista.com.br',
+    horario: 'Atendimento por agendamento'
+  },
+  {
+    nome: 'São Pedro da Aldeia',
+    endereco: 'Centro',
+    cidade: 'São Pedro da Aldeia, RJ',
+    telefone: '(22) 99999-9999',
+    email: 'contato@ruanbatista.com.br',
+    horario: 'Atendimento por agendamento'
+  },
+  {
+    nome: 'Rio das Ostras',
+    endereco: 'Centro',
+    cidade: 'Rio das Ostras, RJ',
+    telefone: '(22) 99999-9999',
+    email: 'contato@ruanbatista.com.br',
+    horario: 'Atendimento por agendamento'
+  },
+  {
+    nome: 'Barra da Tijuca',
+    endereco: 'Barra da Tijuca',
     cidade: 'Rio de Janeiro, RJ',
-    telefone: '(21) 3234-5678',
-    email: 'rj.copa@duarte.com.br',
-    horario: 'Seg-Sex: 9h-18h | Sáb: 9h-13h'
+    telefone: '(22) 99999-9999',
+    email: 'contato@ruanbatista.com.br',
+    horario: 'Atendimento por agendamento'
   },
   {
-    nome: 'Belo Horizonte - Savassi',
-    endereco: 'Rua Pernambuco, 1000 - Savassi',
-    cidade: 'Belo Horizonte, MG',
-    telefone: '(31) 3567-8901',
-    email: 'bh.savassi@duarte.com.br',
-    horario: 'Seg-Sex: 9h-18h | Sáb: 9h-13h'
-  },
-  {
-    nome: 'Curitiba - Batel',
-    endereco: 'Av. do Batel, 1800 - Batel',
-    cidade: 'Curitiba, PR',
-    telefone: '(41) 3678-9012',
-    email: 'ct.batel@duarte.com.br',
-    horario: 'Seg-Sex: 9h-18h | Sáb: 9h-13h'
-  },
-  {
-    nome: 'Porto Alegre - Moinhos de Vento',
-    endereco: 'Rua Padre Chagas, 500 - Moinhos',
-    cidade: 'Porto Alegre, RS',
-    telefone: '(51) 3789-0123',
-    email: 'poa.moinhos@duarte.com.br',
-    horario: 'Seg-Sex: 9h-18h | Sáb: 9h-13h'
-  },
-  {
-    nome: 'Brasília - Asa Sul',
-    endereco: 'SHIS QI 9 - Lago Sul',
-    cidade: 'Brasília, DF',
-    telefone: '(61) 3890-1234',
-    email: 'bsb.asasul@duarte.com.br',
-    horario: 'Seg-Sex: 9h-18h | Sáb: 9h-13h'
+    nome: 'Zona Sul',
+    endereco: 'Copacabana, Ipanema, Leblon',
+    cidade: 'Rio de Janeiro, RJ',
+    telefone: '(22) 99999-9999',
+    email: 'contato@ruanbatista.com.br',
+    horario: 'Atendimento por agendamento'
   }
 ];
 </script>
@@ -61,8 +69,8 @@ const escritorios = [
   <div class="page-container">
     <div class="hero-banner">
       <div class="hero-content">
-        <h1 class="hero-title">Nossos Escritórios</h1>
-        <p class="hero-subtitle">Presentes nas principais cidades do Brasil para atender você</p>
+        <h1 class="hero-title">Áreas de Atendimento</h1>
+        <p class="hero-subtitle">Presente na Região dos Lagos e Capital do Rio de Janeiro</p>
       </div>
     </div>
 
@@ -70,9 +78,9 @@ const escritorios = [
       <div class="section-container">
         <div class="intro-text">
           <p class="text-content">
-            A Duarte Consultoria Imobiliária possui escritórios estrategicamente localizados nas principais 
-            cidades do Brasil, oferecendo atendimento personalizado e de excelência. Visite-nos e conheça 
-            nossa estrutura completa.
+            Ruan Batista Consultor Imobiliário atende clientes em toda a Região dos Lagos e na capital do 
+            Rio de Janeiro, oferecendo consultoria personalizada e conhecimento profundo do mercado local. 
+            Entre em contato para agendar uma visita ou reunião.
           </p>
         </div>
 

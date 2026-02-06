@@ -21,7 +21,7 @@ onMounted(() => {
           <section class="legal-section">
             <h2>1. Introdução</h2>
             <p>
-              A Duarte Consultoria Imobiliária está comprometida em proteger sua privacidade. Esta Política de 
+              A Ruan Batista Consultor Imobiliário está comprometida em proteger sua privacidade. Esta Política de 
               Privacidade descreve como coletamos, usamos, divulgamos e protegemos suas informações pessoais quando 
               você usa nosso portal imobiliário.
             </p>

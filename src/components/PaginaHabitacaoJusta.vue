@@ -21,7 +21,7 @@ onMounted(() => {
           <section class="legal-section">
             <h2>Nosso Compromisso</h2>
             <p>
-              A Duarte Consultoria Imobiliária está comprometida em fornecer oportunidades iguais de habitação para 
+              A Ruan Batista Consultor Imobiliário está comprometida em fornecer oportunidades iguais de habitação para 
               todas as pessoas, em conformidade com as leis federais, estaduais e municipais de habitação justa. 
               Não discriminamos e proibimos a discriminação contra qualquer pessoa por motivos de:
             </p>
@@ -133,7 +133,7 @@ onMounted(() => {
           <section class="legal-section">
             <h2>Compromisso Contínuo</h2>
             <p>
-              A Duarte Consultoria Imobiliária reafirma seu compromisso contínuo com a habitação justa e igualdade 
+              A Ruan Batista Consultor Imobiliário reafirma seu compromisso contínuo com a habitação justa e igualdade 
               de oportunidades. Acreditamos que todas as pessoas merecem acesso justo e igual a oportunidades de 
               habitação, e trabalharemos incansavelmente para garantir que esse princípio seja mantido em todas as 
               nossas operações.
