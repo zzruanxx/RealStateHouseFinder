@@ -2,10 +2,10 @@
 export const config = {
   // Informações de contato
   contact: {
-    phone: '5511999999999', // Formato: código do país + DDD + número (sem espaços ou símbolos)
-    phoneFormatted: '(11) 99999-9999', // Formato para exibição
+    phone: '5522999999999', // Formato: código do país + DDD + número (sem espaços ou símbolos)
+    phoneFormatted: '(22) 99999-9999', // Formato para exibição
     email: 'contato@ruanbatista.com.br',
-    whatsappMessage: 'Olá! Gostaria de mais informações sobre imóveis disponíveis.'
+    whatsappMessage: 'Olá! Gostaria de mais informações sobre imóveis disponíveis na Região dos Lagos e Capital.'
   },
   
   // Informações da empresa

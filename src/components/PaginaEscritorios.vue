@@ -8,9 +8,9 @@ onMounted(() => {
 const escritorios = [
   {
     nome: 'Araruama - Sede',
-    endereco: 'Centro',
+    endereco: 'Centro', // TODO: Atualizar com endereço específico
     cidade: 'Araruama, RJ',
-    telefone: '(22) 99999-9999',
+    telefone: '(22) 99999-9999', // TODO: Atualizar com número real
     email: 'contato@ruanbatista.com.br',
     horario: 'Seg-Sex: 9h-18h | Sáb: 9h-13h'
   },
