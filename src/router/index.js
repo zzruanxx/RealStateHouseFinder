@@ -55,6 +55,10 @@ const routes = [
     component: PaginaSobreMim
   },
   {
+    path: '/corretores',
+    redirect: '/sobre-mim'
+  },
+  {
     path: '/termos',
     name: 'Termos',
     component: PaginaTermos
