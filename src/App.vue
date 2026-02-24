@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { account } from './appwrite';
 import { config } from './config';
@@ -38,8 +38,32 @@ const openWhatsApp = () => {
   window.open(url, '_blank');
 };
 
+// Efeito de digitação da logo
+const logoText = ref('');
+const fullLogoText = 'R.B Consultoria Imobiliária';
+const typingComplete = ref(false);
+
+const startTypingEffect = () => {
+  let i = 0;
+  typingComplete.value = false;
+  logoText.value = '';
+  const interval = setInterval(() => {
+    if (i < fullLogoText.length) {
+      logoText.value += fullLogoText.charAt(i);
+      i++;
+    } else {
+      typingComplete.value = true;
+      clearInterval(interval);
+    }
+  }, 80);
+};
+
 onMounted(() => {
-  checkAuth();
+  startTypingEffect();
+});
+
+onUnmounted(() => {
+  clearInterval(startTypingEffect);
 });
 </script>
 
@@ -50,7 +74,9 @@ onMounted(() => {
       <nav class="nav-container">
         <div class="nav-brand">
           <router-link to="/" class="brand-link">
-            <span class="brand-text">Ruan Batista</span>
+            <span class="logo-link">
+              <span class="logo-typing">{{ logoText }}<span v-if="!typingComplete" class="typing-cursor">|</span></span>
+            </span>
           </router-link>
         </div>
 

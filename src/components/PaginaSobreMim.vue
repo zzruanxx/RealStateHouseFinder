@@ -204,7 +204,8 @@ const areas = [
 }
 
 .hero-banner {
-  background: linear-gradient(135deg, #000 0%, #333 100%);
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+              url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
   color: white;
   padding: 6rem 2rem 4rem;
   text-align: center;

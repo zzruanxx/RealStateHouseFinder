@@ -10,7 +10,7 @@ export const config = {
   
   // Informações da empresa
   company: {
-    name: 'Ruan Batista Consultor Imobiliário',
+    name: 'R.B Consultoria Imobiliária',
     slogan: 'Especialista na Região dos Lagos e Capital do Rio de Janeiro'
   },
 

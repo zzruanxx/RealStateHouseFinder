@@ -391,10 +391,7 @@ onMounted(() => {
 /* Hero Section - SERHANT Style */
 .hero-section {
   position: relative;
-  background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%), 
-              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23111" width="1200" height="600"/></svg>');
-  background-size: cover;
-  background-position: center;
+  background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
   color: white;
   padding: 8rem 2rem 6rem;
   text-align: center;
@@ -410,7 +407,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+  background: rgba(0, 0, 0, 0.65);
 }
 
 .hero-content {
