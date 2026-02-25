@@ -81,8 +81,8 @@ onUnmounted(() => {
         </div>
 
         <div class="nav-menu">
-          <router-link to="/busca?tipo_anuncio=venda" class="nav-link">Comprar</router-link>
-          <router-link to="/busca?tipo_anuncio=aluguel" class="nav-link">Alugar</router-link>
+          <router-link to="/venda" class="nav-link">Comprar</router-link>
+          <router-link to="/locacao" class="nav-link">Alugar</router-link>
           <router-link to="/admin/cadastrar" class="nav-link">Vender</router-link>
           <router-link to="/sobre-mim" class="nav-link">Sobre Mim</router-link>
 
@@ -110,8 +110,8 @@ onUnmounted(() => {
           <div class="footer-section">
             <h4 class="footer-heading">Navegação</h4>
             <ul class="footer-list">
-              <li><router-link to="/busca?tipo_anuncio=venda" class="footer-link">Comprar</router-link></li>
-              <li><router-link to="/busca?tipo_anuncio=aluguel" class="footer-link">Alugar</router-link></li>
+              <li><router-link to="/venda" class="footer-link">Comprar</router-link></li>
+              <li><router-link to="/locacao" class="footer-link">Alugar</router-link></li>
               <li><router-link to="/admin/cadastrar" class="footer-link">Vender</router-link></li>
               <li><router-link to="/busca" class="footer-link">Lançamentos</router-link></li>
               <li><router-link to="/sobre-mim" class="footer-link">Sobre Mim</router-link></li>
