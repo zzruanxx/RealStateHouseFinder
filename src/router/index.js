@@ -4,6 +4,8 @@ import { account } from '../appwrite';
 // Import components
 import PaginaInicial from '../components/PaginaInicial.vue';
 import PaginaBusca from '../components/PaginaBusca.vue';
+import PaginaLocacao from '../components/PaginaLocacao.vue';
+import PaginaVenda from '../components/PaginaVenda.vue';
 import DetalheImovel from '../components/DetalheImovel.vue';
 import AdminLogin from '../components/AdminLogin.vue';
 import AdminDashboard from '../components/AdminDashboard.vue';
@@ -28,6 +30,16 @@ const routes = [
     path: '/busca',
     name: 'Busca',
     component: PaginaBusca
+  },
+  {
+    path: '/locacao',
+    name: 'Locacao',
+    component: PaginaLocacao
+  },
+  {
+    path: '/venda',
+    name: 'Venda',
+    component: PaginaVenda
   },
   {
     path: '/imovel/:id',
